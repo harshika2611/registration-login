@@ -7,7 +7,7 @@ router.get("/",(req,res)=>{
   res.render('index');
 })
 
-router.post("/",checkRegister)
+router.post("/",checkRegister);
 
 
 router.get('/activelink/:link',getLink);

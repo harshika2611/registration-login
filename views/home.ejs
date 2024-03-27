@@ -5,8 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<style>
+  .btn_logout{
+   padding: 10px 11px;
+  background: rgb(148, 194, 234);
+  border: none;
+  margin: auto;
+}
+.btn-link{
+  text-decoration: none;
+  color: black;
+}
+.section{
+  max-width: 1140px;
+  margin: auto;
+  display: flex;
+}
+.main{
+  max-width: 1140px;
+  margin: auto;
+  display: flex;
+  }
+  td{
+    padding: 16px 5px;
+  }
+  .link{
+    text-decoration: none;
+    color: black;
+  }
+  .sec1{
+    width: 50%;
+  }
+ 
+</style>
 <body>
-  <h3>welcome to the user </h3>
-  <button><a href="http://localhost:8050/api/login/logOut">Logout</a></button>
+  <div class="main">
+  <h3>Welcome to the User <%=email%></h3>
+  <button class="btn_logout"><a class="btn-link" href="http://localhost:8050/api/logout">Logout</a></button>
+</div>
+<div class="section">
+  <div class="sec1">
+  <table >
+    <tr>
+      <td> <a class="link" href="http://localhost:8050/api/tasks/dynamictable">Dynamic Table</a></td>
+    </tr>
+    <tr>
+      <td><a class="link"  href="http://localhost:8050/api/tasks/kukucube">Kuku Cube</a></td>
+    </tr>
+    <tr>
+      <td><a class="link"  href="http://localhost:8050/api/tasks/tictactoe">Tic Tac Toe</a></td>
+    </tr>
+    <tr>
+      <td><a class="link"  href="http://localhost:8050/api/tasks/selectionSort">Selection Sort</a></td>
+    </tr>
+  </table>
+</div>
+<div class="sec2">
+ <table >
+
+  <tr>
+    <td>dvjd</td>
+  </tr>
+ </table>
+</div>
+</div>
 </body>
 </html>

@@ -14,11 +14,11 @@ const userLogin = async (req, res) => {
       const password = md5(user[0].sault + req.body.password);
       if (password == user[0].regi_password) {
         const token = jwt.sign({ email: email }, SECRET_KEY);
-        console.log(token);
+      
        const result= res.cookie('token', token, {
           httpOnly: true,
         });
-        res.render("home")
+        res.render("home",{email})
         return result;
         
       } else {

@@ -1,0 +1,15 @@
+h1{
+  text-align: center;
+}
+body{
+  background-color: rgb(157, 188, 214);
+}
+table, tr, td{
+border: 5px solid rgb(245, 238, 238);
+border-collapse: collapse;
+padding: 50px 50px;
+
+}
+td{
+  background-color: cadetblue;
+}
