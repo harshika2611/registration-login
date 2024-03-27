@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+   form{
+      padding: 10px 10px;
+      max-width: 240px;
+      margin: 0 auto;
+      background-color: aliceblue;
+      box-shadow: 5px 5px rgb(162, 195, 224);
+    }
+    input{
+   margin: 10px 10px;
+    }
+    h2{
+      text-align: center;
+    }
+</style>
+<body>
+  <h2>Create Password here</h2>
+ <form method="post">
+  <label for="regi_email">Email</label>
+  <input type="email" name="Email" placeholder="xyz@gmail.com" id="regi_email"  required>  
+  <label for="new_pass">New Password</label>
+  <input type="text" name="new_pass" class="new_pass" id="new_pass" required>
+  <label for="confirm_pass">Confirm Password</label>
+  <input type="password" name="confirm_pass" class="confirm_pass" id="confirm_pass" required>
+  <%if(locals.error_forgot){%>
+    <div style="color: red;"><%=error_forgot%></div>
+  <%}%>
+    
+  <button type="submit">Generate</button>
+ </form>
+ <script>
+
+  (function () {
+    'use strict'
+  
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+    </script>
+</body>
+</html>
