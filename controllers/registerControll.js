@@ -42,7 +42,8 @@ const getLink=async(req,res)=>{
       res.send('expired');
     }
   } catch (error) {
-    
+    console.error("error", error);
+    res.status(500).json({message:"can`t fetch user controller"});
   }
  
 }

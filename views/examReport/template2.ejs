@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+ table, td, th {
+  border: 1px solid;
+}
+
+table {
+ width: 50%;
+  border-collapse: collapse;
+}
+</style>
+<body>
+  <center>
+
+  <table>
+    <tr>
+      <th>Studentid</th>
+      <th>Studenname</th>
+    </tr>
+ 
+    <tr>
+      <td><%=rows[0].studentId%></td>
+      <td><%=rows[0].firstName%></td>
+    </tr>
+
+  </table>
+ 
+    <table>
+     <tr>
+      <th>Subjectid</th>
+      <th>Subjectname</th>
+      <th>P_Marks</th>
+      <th>T_Marks</th>
+      <th>Obtainmarks</th>
+     </tr>
+     <% var total = 0 %>
+     <h3>PRILIMS</h3>
+   
+        <%for(let i=0; i<rows.length; i++){%>
+      
+        <% if(rows[i].examType=='PRELIM'){%>
+          <tr>
+          <td><%=rows[i].subjectId%></td>
+          <td><%=rows[i].subjectName%></td>
+          <td><%=rows[i].P_Marks%></td>
+          <td><%=rows[i].T_Marks%></td>
+          <td><%=rows[i].ObtainMarks%></td>
+          <% total += rows[i].ObtainMarks %>
+        </tr>
+      
+          <% } %>
+      <% } %>
+
+    
+      <tr>
+        <th colspan="4">Percentage</th>
+        <td><%=((total/600)*100).toFixed(2)%>%</td>
+      </tr>
+      
+    </table>
+    <table>
+      <% var total = 0 %>
+        <h3>TERMINAL</h3>
+        <tr>
+          <th>Subjectid</th>
+          <th>Subjectname</th>
+          <th>P_Marks</th>
+          <th>T_Marks</th>
+          <th>Obtainmarks</th>
+         </tr>
+     
+        <%for(let i=0; i<rows.length; i++){%>
+        <% if(rows[i].examType=='TERMINAL'){%>
+          <tr>
+          <td><%=rows[i].subjectId%></td>
+          <td><%=rows[i].subjectName%></td>
+          <td><%=rows[i].P_Marks%></td>
+          <td><%=rows[i].T_Marks%></td>
+          <td><%=rows[i].ObtainMarks%></td>
+          <% total += rows[i].ObtainMarks %>
+        </tr>
+          <% } %>  
+      <% } %>
+      <tr>
+        <th colspan="4">Percentage</th>
+        <td><%=((total/600)*100).toFixed(2)%>%</td>
+      </tr>
+    </table>
+    <table>
+      <% var total = 0 %>
+      <h3>FINAL</h3>
+      <tr>
+        <th>Subjectid</th>
+        <th>Subjectname</th>
+        <th>P_Marks</th>
+        <th>T_Marks</th>
+        <th>Obtainmarks</th>
+       </tr>
+        <%for(let i=0; i<rows.length; i++){%>
+        <% if(rows[i].examType=='FINAL'){%>
+          <tr>
+          <td><%=rows[i].subjectId%></td>
+          <td><%=rows[i].subjectName%></td>
+          <td><%=rows[i].P_Marks%></td>
+          <td><%=rows[i].T_Marks%></td>
+          <td><%=rows[i].ObtainMarks%></td>
+           <% total += rows[i].ObtainMarks %>
+        </tr>
+          <% } %>
+      <% } %>
+      <tr>
+        <th colspan="4">Percentage</th>
+        <td><%=((total/600)*100).toFixed(2)%>%</td>
+      </tr>
+    </table>
+
+<script>
+ 
+</script>
+</body>
+</html>

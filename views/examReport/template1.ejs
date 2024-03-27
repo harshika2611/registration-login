@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>template1</title>
+</head>
+<style>
+  table, td, th {
+  border: 1px solid;
+}
+input{
+    padding: 8px 8px;
+    font-size: 20px;
+  }
+
+table {
+ width: 50%;
+  border-collapse: collapse;
+}
+  button {
+    padding: 10px 10px;
+    margin-top: 20px;
+      
+  }
+</style>
+
+<body>
+  
+  <div>
+    <div id="form1">
+      <form action="/api/tasks/exam" method="post">
+      <input type="text" placeholder="Enter Any StudentId" name="sid" id="sid" autofocus>
+    <button type="submit">Go</button> 
+  </form>
+    </div>
+    <div id="form2" style="display: none;">
+      <form action="/api/tasks/exam/sea" method="post">
+      <label for="firstName">Firstname</label>
+      <input type="text" name="firstName" id="firstName">
+      <label for="lastName">Lastname</label>
+      <input type="text" name="lastName" id="lastName">
+      <select id="search" name="search">
+        <option disabled selected value>-- select an option --</option>
+        <option value="and">and</option>
+        <option value="or">or</option>
+      </select>
+      <button type="submit">Go</button>
+    </form>
+    </div>
+  </div>
+  <button id="searchBtn" onclick="searchBtn()">Show More</button>
+  <% if(locals.inputtext || locals.post){%>
+    <% console.log(inputtext)%>
+    <section style="text-align: center;">
+      <a href="" id="dec" onclick="decr()"> <button id="btn1">
+          << </button></a>
+      <a href="" id="dec1" onclick="dec1()"><button id="btn2">
+          < </button></a>
+      <button id="pageC">
+        <%=id%>
+      </button>
+      <a href="" id="inc1" onclick="inc1()"><button id="btn3">></button></a>
+      <a href="" id="inc" onclick="inc()"><button id="btn4">>></button></a>
+    </section>
+    <script>
+          minlen = 1;
+           maxlen = 4;
+           pageC = document.getElementById("pageC");
+    if (pageC.innerHTML == 1) {
+      document.getElementById("btn1").disabled = true;
+      document.getElementById("btn2").disabled = true;
+    }
+    if (pageC.innerHTML == 4) {
+      document.getElementById("btn3").disabled = true;
+      document.getElementById("btn4").disabled = true;
+    }
+    function decr() {
+      let pageC = document.getElementById("pageC");
+      pageC.innerHTML = minlen;
+      document.getElementById("dec").href = `/api/tasks/exam/sea?id=${(minlen)}&firstName=<%=firstName%>&lastname=<%=lastName%>&search=<%=search%>`
+
+    }
+    function dec1() {
+      let pageC = document.getElementById("pageC");
+      if (pageC.innerHTML > 1) {
+        pageC.innerHTML = parseInt(pageC.innerHTML) - 1;
+        document.getElementById("dec1").href = `/api/tasks/exam/sea?id=${parseInt(pageC.innerHTML)}&firstName=<%=firstName%>&lastname=<%=lastName%>&search=<%=search%>`
+
+      }
+
+    }
+    function inc1() {
+      let pageC = document.getElementById("pageC");
+      if (pageC.innerHTML < 4) {
+        pageC.innerHTML = parseInt(pageC.innerHTML) + 1;
+        document.getElementById("inc1").href = `/api/tasks/exam/sea/data?id=${parseInt(pageC.innerHTML)}&inputtext=<%=inputtext%>`;
+
+      }
+    }
+    function inc() {
+      let pageC = document.getElementById("pageC");
+      pageC.innerHTML = maxlen;
+      document.getElementById("inc").href = `/api/tasks/exam/sea?id=${maxlen}&firstName=<%=firstName%>&lastname=<%=lastName%>&search=<%=search%>`
+    }
+    </script>
+    <%}else if(locals.rows && locals.post){%>
+      <section style="text-align: center;">
+        <a href="" id="dec" onclick="decr()"> <button id="btn1">
+            << </button></a>
+        <a href="" id="dec1" onclick="dec1()"><button id="btn2">
+            < </button></a>
+        <button id="pageC">
+          <%=id%>
+        </button>
+        <a href="" id="inc1" onclick="inc1()"><button id="btn3">></button></a>
+        <a href="" id="inc" onclick="inc()"><button id="btn4">>></button></a>
+      </section>
+      <script>
+      
+          let minlen = 1;
+          let maxlen = 4;
+          let pageC = document.getElementById("pageC");
+          if (pageC.innerHTML == 1) {
+            document.getElementById("btn1").disabled = true;
+            document.getElementById("btn2").disabled = true;
+          }
+          if (pageC.innerHTML == 4) {
+            document.getElementById("btn3").disabled = true;
+            document.getElementById("btn4").disabled = true;
+          }
+          function decr() {
+            let pageC = document.getElementById("pageC");
+            pageC.innerHTML = minlen;
+            document.getElementById("dec").href = `/?id=${(minlen)}`
+      
+          }
+          function dec1() {
+            let pageC = document.getElementById("pageC");
+            if (pageC.innerHTML > 1) {
+              pageC.innerHTML = parseInt(pageC.innerHTML) - 1;
+              document.getElementById("dec1").href = `/?id=${parseInt(pageC.innerHTML)}`
+      
+            }
+      
+          }
+          function inc1() {
+            let pageC = document.getElementById("pageC");
+            if (pageC.innerHTML < 4) {
+              pageC.innerHTML = parseInt(pageC.innerHTML) + 1;
+              document.getElementById("inc1").href = `/?id=${parseInt(pageC.innerHTML)}`
+      
+            }
+          }
+          function inc() {
+            let pageC = document.getElementById("pageC");
+            pageC.innerHTML = maxlen;
+            document.getElementById("inc").href = `/?id=${maxlen}`
+          }
+       
+      </script>
+    <%}%>
+   
+<center>
+  <table>
+    <tr>
+   <th>Studentid</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th colspan="2">Prelims</th>
+      <th colspan="2">Terminals</th>
+      <th colspan="2">Final</th>
+      <th>Total</th>
+      <th>Percentage</th>
+    </tr>
+    <tr>
+     <th></th>
+      <th></th>
+      <th></th>
+      <th>Practical</th>
+      <th>theory</th>
+      <th>Practical</th>
+      <th>theory</th>
+      <th>Practical</th>
+      <th>theory</th>
+      <th>Marks</th>
+      <th></th>
+    </tr>
+    <tr>
+   
+      <%for(let i=0; i<rows.length; i++){%>
+        <td><%=rows[i].studentId%></td>
+        <td><%=rows[i].firstName%></td>
+        <td><%=rows[i].lastName%></td>
+        <td><%=rows[i].practical_P%></td>
+        <td><%=rows[i].Theory_P%></td>
+        <td><%=rows[i].practical_T%></td>
+        <td><%=rows[i].Theory_T%></td>
+        <td><%=rows[i].practical_F%></td>
+        <td><%=rows[i].Theory_F%></td>
+        <td><%=rows[i].Obtainmarks%></td> 
+        <td><%=parseFloat(((rows[i].Obtainmarks)/1800)*100).toFixed(2)%>%</td>
+        <td><a href="/api/tasks/exam/<%=rows[i].studentId%>"><button>view details</button></a></td>
+
+    </tr>
+    <% } %>
+  </table>
+ 
+</center>
+</body>
+<script>
+     function searchBtn(){
+            let text=document.getElementById('form2');
+            let text2=document.getElementById('form1');
+            if(text.style.display==='none'){
+              text.style.display='block';
+              text2.style.display='none';
+              document.getElementById('searchBtn').value="ShowLess"
+              document.getElementById('searchBtn').innerHTML="Show Less"
+            }else{
+              text2.style.display='block';
+              text.style.display='none';
+              document.getElementById('searchBtn').value="ShowMore"
+              document.getElementById('searchBtn').innerHTML="Show More"
+              
+            }
+      
+          }
+</script>
+</html>
