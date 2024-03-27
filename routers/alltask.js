@@ -2,6 +2,9 @@ const express = require('express');
 const data = require("../config/config");
 const router=express.Router();
 const {examcontroll,searchData,searchField,searchPagination,detailStudent}=require('../controllers/examcontroll');
+const {sortingByOrder}=require("../controllers/sortingOredercontroll");
+const {attendanceReport}=require("../controllers/attendancecontroll");
+const { route } = require('./registerRouter');
 
 router.get("/dynamictable",(req,res)=>{
   res.render("tasks/dynamictable");
@@ -27,5 +30,8 @@ router.get('/exam/sea/data',searchPagination)
 
 router.get('/exam/:id', detailStudent)
 
+router.get('/sorting', sortingByOrder)
+
+router.get('/attendance', attendanceReport)
 
 module.exports = router;
