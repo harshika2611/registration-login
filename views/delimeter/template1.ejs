@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>template1</title>
+</head>
+<style>
+  table, td, th {
+   border: 1px solid;
+ }
+ 
+ table {
+  width: 50%;
+   border-collapse: collapse;
+ }
+ input{
+    padding: 8px 8px;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  button {
+    padding: 10px 10px;
+    margin-top: 20px;
+      
+  }
+ </style>
+<body>
+<table>
+  <p>Note: Firstname="_", Lastname="^", Email="$", Age="{", City="}", Country=":"</p>
+  <form action="/api/tasks/delimeterSearch" method="post">
+    <input type="text" name="delimeter" id="delimeter">
+
+    <button type="submit">Go</button>
+  </form>
+  <tr>
+    <th>Studentid</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Age</th>
+    <th>City</th>
+    <th>Country</th>
+  </tr>
+  <%for(let i=0; i<rows.length; i++){%>
+  <tr>
+    <td><%=rows[i].id%></td>
+    <td><%=rows[i].firstname%></td>
+    <td><%=rows[i].lastname%></td>
+    <td><%=rows[i].email%></td>
+    <td><%=rows[i].age%></td>
+    <td><%=rows[i].city%></td>
+    <td><%=rows[i].Country%></td>
+  </tr>
+  <%}%>
+</table>
+</body>
+</html>
+
+
+
+

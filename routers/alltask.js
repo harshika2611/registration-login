@@ -4,7 +4,10 @@ const router=express.Router();
 const {examcontroll,searchData,searchField,searchPagination,detailStudent}=require('../controllers/examcontroll');
 const {sortingByOrder}=require("../controllers/sortingOredercontroll");
 const {attendanceReport}=require("../controllers/attendancecontroll");
+const {delimiterSearch,searchWithDelimeter}=require("../controllers/delemetercontroll");
+
 const { route } = require('./registerRouter');
+
 
 router.get("/dynamictable",(req,res)=>{
   res.render("tasks/dynamictable");
@@ -19,10 +22,9 @@ router.get("/selectionSort",(req,res)=>{
   res.render("tasks/selectionSort");
 })
 
-router.get('/exam',examcontroll);
+router.get('/exam',examcontroll)
 
-
-router.post('/exam',searchData);
+router.post('/exam',searchData)
 
 router.post('/exam/sea',searchField)
 
@@ -33,5 +35,11 @@ router.get('/exam/:id', detailStudent)
 router.get('/sorting', sortingByOrder)
 
 router.get('/attendance', attendanceReport)
+
+router.get('/delimeterSearch',delimiterSearch)
+
+router.post('/delimeterSearch',searchWithDelimeter)
+
+
 
 module.exports = router;
