@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Validation</title>
+
+</head>
+<style>
+  #prev-btn,#next-btn,#submit,#update{
+    margin-top: 10px;
+    padding: 10px 10px;
+    background-color:  rgb(84, 84, 237);
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  .form1{
+    display: none;
+  }
+  .from-active{
+    display: block;
+  }
+  fieldset{
+    background-color: aliceblue;
+    border-color: rgb(84, 84, 237);
+  }
+  fieldset
+</style>
+<body>
+    <h1 style="text-align: center;">Job Application Form</h1>
+    <form id="form" method="post" onsubmit="return validateForm()">
+
+        <fieldset style="width: 50%;" class="form1 from-active">
+            <legend>Basic Details</legend>
+
+            <table>
+                <tr>
+                 
+                    <td><label class="required" for="fname">First Name</label><span class="asterisk_input"> </span></td>
+                    <td><input tabindex="1" placeholder="Enter your first name" type="text" name="fname" id="fname"  />
+                    </td>
+                    <td style="padding: 10px 20px;"><label for="lname">Last Name</label><span class="asterisk_input">
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input placeholder="Enter your last name" tabindex="2" type="text"
+                            name="lname" id="lname" /></td>
+                </tr>
+                <tr>
+                    <td><label for="designation">Designation</label><span class="asterisk_input"> </span></td>
+                    <td> <input tabindex="3" type="text" name="designation" id="designation" /></td>
+                    <td style="padding: 10px 20px;"><label for="add1">Address 1</label><span class="asterisk_input">
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input tabindex="4" type="text" name="add1" id="add1" /></td>
+                </tr>
+                <tr>
+                    <td> <label for="email">Email</label><span class="asterisk_input"></span></td>
+                    <td><input tabindex="6" type="text" name="email" id="email"  ></td>
+                    <td style="padding: 10px 20px;"><label for="add2">Address 2</label><span class="asterisk_input">
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input tabindex="5" type="text" name="add2" id="add2" ></td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><label for="number">Phone Number</label><span class="asterisk_input"> </span></td>
+                    <td rowspan="2"><input tabindex="7" type="text" name="number" id="number" ></td>
+                    <td style="padding: 10px 20px;"><label for="city">City</label><span class="asterisk_input"> </span>
+                    </td>
+                    <td style="padding: 10px 20px;"><input tabindex="8" type="text" name="city" id="city" ></td>
+
+                </tr>
+                <tr>
+                    <td style="padding: 10px 20px;"><label for="state">State</label><span class="asterisk_input">
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input tabindex="9" type="text" name="state" id="state"  ></td>
+                </tr>
+                <tr>
+                    <td><label for="gd">Gender</label><span id="error_msg" class="asterisk_input">
+                            <p id="error_gender"></p>
+                        </span></td>
+                    
+                    <td><input tabindex="10" type="radio" name="gd" value="Male" id="Male" >
+                        <label for="Male">Male</label>
+                        <input tabindex="11" type="radio" name="gd" value="Female" id="Female">
+                        <label for="Female">Female</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <label for="code">Zip code</label><span class="asterisk_input">
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input tabindex="12" type="text" name="zip" id="code" ></td>
+                </tr>
+                <tr>
+                    <td><label for="status">RelastionShip Status</label><span id="error_msg1" class="asterisk_input">
+                            <p id="error_status"></p>
+                        </span></td>
+                    <td><select tabindex="13" name="status" id="status"  >
+                            <option hidden></option>  
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                        </select></td>
+                    <td style="padding: 10px 20px;"><label for="dob">Date of Birth</label><span class="asterisk_input">
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input tabindex="14" type="text" name="dob" id="dob" ></td>
+                </tr>
+            </table>
+   
+        </fieldset> 
+     
+        <fieldset style="max-width:80%; " class="form1">
+            <legend>Education Details</legend>
+            <table>
+                <tr>
+                    <td>SSC Result</td>
+
+                </tr>
+                <tr>
+                    <td><label for="board">Name of Board</label><span id="error_msg">
+                            <p id="error_ssc"></p>
+                        </span></td>
+                    <td><input type="text" name="board" id="board" <% if(locals.edudata) {%> value="<%= edudata[0]?.cource_name %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="ssc_py">Passing Year</label><span id="error_msg">
+                            <p id="error_sp"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="ssc_py" <% if(locals.edudata) {%> value="<%= edudata[0]?.passing_year %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="sscper">Percentage</label><span id="error_msg">
+                            <p id="error_sper"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="sscper" <% if(locals.edudata) {%> value="<%= edudata[0]?.percentage %>" <% } %>></td>
+                </tr>
+
+                <tr>
+
+                    <td>HSC Result</td>
+
+                </tr>
+                <tr>
+                    <td><label for="board_hsc">Name of Board</label><span id="error_msg">
+                            <p id="error_hsc"></p>
+                        </span></td>
+                    </td>
+
+                    <td><input type="text" name="board" id="board_hsc" <% if(locals.edudata) {%> value="<%= edudata[1]?.cource_name %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="hsc_y">Passing Year</label><span id="error_msg">
+                            <p id="error_hp"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input placeholder="YYYY" type="text" name="year" id="hsc_y" <% if(locals.edudata) {%> value="<%= edudata[1]?.passing_year %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="hscper">Percentage</label><span id="error_msg">
+                            <p id="error_hper"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="hscper" <% if(locals.edudata) {%> value="<%= edudata[1]?.percentage %>" <% } %> ></td>
+                </tr>
+                <tr>
+
+                    <td>bachelor degree</td>
+                </tr>
+                <tr>
+                    <td><label for="degree">Cource Name</label><span id="error_msg">
+                            <p id="error_cn"></p>
+                        </span></td>
+                    <td><input type="text" name="board" id="degree" <% if(locals.edudata) {%> value="<%= edudata[2]?.cource_name %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="py">Passing Year</label><span id="error_msg">
+                            <p id="error_py"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="py" <% if(locals.edudata) {%> value="<%= edudata[2]?.passing_year %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="beper">Percentage</label><span id="error_msg">
+                            <p id="error_beper"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="beper"  <% if(locals.edudata) {%> value="<%= edudata[2]?.percentage %>" <% } %> ></td>
+                </tr>
+                <tr>
+                    <td>Master degree</td>
+                </tr>
+                <tr>
+                    <td><label for="md">Cource Name</label><span id="error_msg">
+                            <p id="error_md"></p>
+                        </span></td>
+                    <td><input type="text" name="board" id="md" <% if(locals.edudata) {%> value="<%= edudata[3]?.cource_name %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><label for="master_py" >Passing Year</label><span id="error_msg">
+                            <p id="error_mp"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="master_py" <% if(locals.edudata) {%> value="<%= edudata[3]?.passing_year %>" <% } %>>
+                    </td>
+                    <td style="padding: 10px 20px;"> <label for="masterper">Percentage</label><span id="error_msg">
+                            <p id="error_masterper"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="number" name="Percentage" id="masterper" <% if(locals.edudata) {%> value="<%= edudata[3]?.percentage %>" <% } %> ></td>
+                </tr>
+            </table>
+           
+        </fieldset>
+        <fieldset style="width: 90%;" class="form1">
+            <legend>Work Experiance</legend>
+            <button id="addrow">+</button>
+            <button id="dltrow" >-</button>
+            <table id="myTable">
+                <tr>
+                    <td> <label for="name1">Company name</label><span id="error_msg">
+                            <p id="error_name1"></p>
+                        </span></td>
+                    <td><input type="text" name="name" id="name1" ></td>
+                    <td style="padding: 10px 20px;"> <label for="design1">Designation</label><span id="error_msg">
+                            <p id="error_design1"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="design" id="design1" ></td>
+                    <td style="padding: 10px 20px;"><label for="from1">From</label><span id="error_msg">
+                            <p id="error_from1"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="from" id="from1"></td>
+                    <td style="padding: 10px 20px;"><label for="to1">To</label><span id="error_msg">
+                            <p id="error_to1"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="to" id="to1" ></td>
+                </tr>
+                <tr>
+                    <td> <label for="name2">Company name</label><span id="error_msg">
+                            <p id="error_name2"></p>
+                        </span></td>
+                    <td><input type="text" name="name" id="name2"></td>
+                    <td style="padding: 10px 20px;"> <label for="design2">Designation</label><span id="error_msg">
+                            <p id="error_design2"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="design" id="design2"></td>
+                    <td style="padding: 10px 20px;"><label for="from2">From</label><span id="error_msg">
+                            <p id="error_from2"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="from" id="from2"></td>
+                    <td style="padding: 10px 20px;"><label for="to2">To</label><span id="error_msg">
+                            <p id="error_to2"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="to" id="to2"></td>
+                </tr>
+                <tr>
+                    <td> <label for="name3">Company name</label><span id="error_msg">
+                            <p id="error_name3"></p>
+                        </span></td>
+                    <td><input type="text" name="name" id="name3"></td>
+                    <td style="padding: 10px 20px;"> <label for="design3">Designation</label><span id="error_msg">
+                            <p id="error_design3"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="design" id="design3"></td>
+                    <td style="padding: 10px 20px;"><label for="from3">From</label><span id="error_msg">
+                            <p id="error_from3"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="from" id="from3"></td>
+                    <td style="padding: 10px 20px;"><label for="to3">To</label><span id="error_msg">
+                            <p id="error_to3"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="to" id="to3"></td>
+                </tr>
+            </table>
+          
+        </fieldset>
+        <fieldset style="width: 70%; text-align: center; padding: 30px 15px;" class="form1">
+            <legend>Language Known</legend>
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="language1" value="hindi" id="hindi">
+                        <label for="hindi">Hindi</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" value="read" name="skill1" id="read1">
+                        <label for="read1">Read</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" value="write" name="skill1" id="write1">
+                        <label for="write1">Write</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="checkbox" value="speak" name="skill1" id="speak1">
+                        <label for="speak1">Speak</label>
+                        <div><span id="error_msg">
+                                <p id="error_hindi"></p>
+                            </span></div>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><input type="checkbox" name="language2" value="English" id="english">
+                        <label for="english">English</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" value="read" name="skill2" id="read2">
+                        <label for="read2">Read</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" value="write" name="skill2" id="write2">
+                        <label for="write2">Write</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="checkbox" value="speak" name="skill2" id="speak2">
+                        <label for="speak2">Speak</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td><input type="checkbox" name="language3" value="Gujrati" id="guj">
+                        <label for="guj">Gujrati</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" value="Read" name="skill3" id="read3">
+                        <label for="read3">Read</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" value="Write" name="skill3" id="write3">
+                        <label for="write3">Write</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="checkbox" value="Speak" name="skill3" id="speak3">
+                        <label for="speak3">Speak</label>
+                    </td>
+                </tr>
+            </table>
+
+            
+        </fieldset>
+        <fieldset style="width: 30%; text-align: center; padding: 10px 10px;" class="form1">
+            <legend>Technologies </legend>
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="technologi1" value="PHP" id="php">
+                        <label for="php">PHP</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Beginer" name="tech_skill1"
+                            id="Beginer1">
+                        <label for="Beginer1">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" value="Mideator" name="tech_skill1"
+                            id="Mideator1">
+                        <label for="Mideator1">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Expert" name="tech_skill1" id="Expert1">
+                        <label for="Expert1">Expert</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="technologi2" value="Mysql" id="Mysql">
+                        <label for="Mysql">Mysql</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Beginer" name="tech_skill2"
+                            id="Beginer2">
+                        <label for="Beginer2">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" value="Mideator" name="tech_skill2"
+                            id="Mideator2">
+                        <label for="Mideator2">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Expert" name="tech_skill2" id="Expert2">
+                        <label for="Expert2">Expert</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="technologi3" value="Larave" id="larave">
+                        <label for="larave">larave</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Beginer" name="tech_skill3"
+                            id="Beginer3">
+                        <label for="Beginer3">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" value="Mideator" name="tech_skill3"
+                            id="Mideator3">
+                        <label for="Mideator3">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Expert" name="tech_skill3" id="Expert3">
+                        <label for="Expert3">Expert</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="technologi4" value="Oracle" id="oracle">
+                        <label for="oracle">Oracle</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Beginer" name="tech_skill4" id="Beginer">
+                        <label for="Beginer">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" value="Mideator" name="tech_skill4"
+                            id="Mideator">
+                        <label for="Mideator">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" value="Expert" name="tech_skill4" id="Expert">
+                        <label for="Expert">Expert</label>
+                    </td>
+                </tr>
+            </table>
+          
+        </fieldset>
+        <fieldset style="width: 60%;" class="form1">
+            <legend>Referance Contact</legend>
+            <table>
+                <tr>
+                    <td><label for="refname1">Name</label><span id="error_msg">
+                            <p id="error_refname1"></p>
+                        </span></td>
+                    <td><input type="text" name="refname" id="refname1"></td>
+                    <td style="padding: 10px 20px;"> <label for="num1">Contact Number</label><span id="error_msg">
+                            <p id="error_num1"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="num" id="num1"></td>
+                    <td style="padding: 10px 20px;"> <label for="relation1">Relation</label><span id="error_msg">
+                            <p id="error_relation1"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="relation" id="relation1"></td>
+                </tr>
+                <tr>
+                    <td><label for="refname2">Name</label><span id="error_msg">
+                            <p id="error_refname2"></p>
+                        </span></td>
+                    <td><input type="text" name="refname" id="refname2"></td>
+                    <td style="padding: 10px 20px;"> <label for="num2">Contact Number</label><span id="error_msg">
+                            <p id="error_num2"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="num" id="num2"></td>
+                    <td style="padding: 10px 20px;"> <label for="relation2">Relation</label><span id="error_msg">
+                            <p id="error_relation2"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="relation" id="relation2"></td>
+                </tr>
+            </table>
+           
+        </fieldset>
+        <fieldset style="max-width: 100%;" class="form1">
+            <legend>Preferance</legend>
+            <table>
+                <tr>
+                    <td><label for="location">Prefered Location</label><span id="error_msg">
+                            <p id="error_location"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="location" id="location"></td>
+                    <td style="padding: 10px 20px;"><label for="nt">Notice Period</label><span id="error_msg">
+                            <p id="error_nt"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="nt" id="nt"></td>
+                    <td style="padding: 10px 20px;"> <label for="Ctc1">Expexted CTC</label><span id="error_msg">
+                            <p id="error_Ctc1"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="Ctc1" id="Ctc1"></td>
+                    <td style="padding: 10px 20px;"><label for="Ctc2">Current CTC</label><span id="error_msg">
+                            <p id="error_Ctc2"></p>
+                        </span></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="Ctc2" id="Ctc2"></td>
+                    <td style="padding: 10px 20px;"><label for="department">Department</label><span id="error_msg1"
+                            class="asterisk_input">
+                            <p id="error_status2"></p>
+                        </span></td>
+                    <td><select name="dp" id="department">
+                            <option hidden></option>
+                            <option value="Devlopment">B-Devlopment</option>
+                            <option value="Design">B-Design</option>
+                            <option value="Marketing">B-Marketing</option>
+                        </select></td>
+                </tr>
+            </table>
+            <input type="button" value="submit" onclick="submitbtn()"  id="submit">
+            <input type="button" value="update" onclick="updatebtn()" id="update">
+        </fieldset>
+      
+
+    </form>
+  
+    
+    <button class="btn btn-prev" id="prev-btn" onclick="prevFun()">Previous</button>
+    <button class="btn btn-next" id="next-btn" onclick="nextFun()">Next</button>
+ 
+ 
+    <script src="/ajxInUp/script.js"></script>
+</body>
+
+</html>

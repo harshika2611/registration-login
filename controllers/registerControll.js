@@ -11,7 +11,7 @@ const checkRegister=async(req,res)=>{
       res.render("index",{msg:msg});
     }else{
       try{
-        console.log(req.body);
+        console.log(req.body,"body of register");
         const otp=Math.floor((Math.random()*1000000000000)+1);
         const user=await registerService(req.body,otp);
         const id=user;
