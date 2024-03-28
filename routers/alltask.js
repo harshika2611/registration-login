@@ -5,7 +5,7 @@ const {examcontroll,searchData,searchField,searchPagination,detailStudent}=requi
 const {sortingByOrder}=require("../controllers/sortingOredercontroll");
 const {attendanceReport}=require("../controllers/attendancecontroll");
 const {delimiterSearch,searchWithDelimeter}=require("../controllers/delemetercontroll");
-const {insertData}=require('../controllers/ajxInUpcontroll');
+const {insertData,fetchData,updateData}=require('../controllers/ajxInUpcontroll');
 const { route } = require('./registerRouter');
 
 
@@ -46,6 +46,14 @@ router.get('/fetchInsertUpdate', (req, res) => {
 
 
 router.post('/fetchInsertUpdate',insertData);
+
+router.get('/fetchInsertUpdate/update/:id', (req, res) => {
+  res.render('AjxInUp/template1');
+})
+
+router.get('/fetchInsertUpdate/data/:id', fetchData);
+
+router.post('/fetchInsertUpdate/update/:id', updateData)
 
 
 module.exports = router;

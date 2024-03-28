@@ -4,7 +4,8 @@ const data = mysql.createPool({
   user: "root",
   password: "Harshi@2611",
   database: "registration_21",
-  dateStrings: true
+  dateStrings: true,
+  multipleStatements: true
 });
 data.connect
 console.log("connected"); 

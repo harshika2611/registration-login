@@ -35,7 +35,7 @@ function updatesteps() {
 }
 
 async function updatebtn() {
-  const id = window.location.pathname.split("/")[4];
+  const id = window.location.pathname.split("/")[5];
 
   const form = document.getElementById("form");
   const formData = new FormData(form);
@@ -52,8 +52,8 @@ async function updatebtn() {
     }
   }
   const updateData = JSON.stringify(serialData);
-  console.log(updateData);
-  const response = await fetch(`http://localhost:8050/api/user/update/${id}`, {
+
+  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/update/${id}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +62,7 @@ async function updatebtn() {
     body: updateData,
   });
 
-  console.log(updateData);
+ 
 }
 
 async function submitbtn() {
@@ -83,14 +83,15 @@ async function submitbtn() {
   const data = JSON.stringify(serialData);
   const response = await fetch("http://localhost:8050/api/tasks/fetchInsertUpdate", {
     method: "post",
+   
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
     body: data,
   });
-  console.log(data);
-  // window.location = `http://localhost:8050/thanks`
+
+  
 }
 
 if (window.location.pathname.split("/").includes('update')) {
@@ -105,61 +106,61 @@ else {
 }
 
 async function fetchUpdate() {
-  const path = window.location.pathname.split("/")[4];
-  console.log(path,"dddddddd");
-  const response = await fetch(`http://localhost:8050/api/user/data/${path}`);
+  const path = window.location.pathname.split("/")[5];
+  
+  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/data/${path}`);
   const result = await response.json();
-  console.log(result);
+console.log(result);
 
   const key1 = Object.keys(result["basicdata"][0]);
-  console.log(key1, "ahahahahah");
+
   key1.forEach(element => {
     if (element == 'gd') {
-      console.log(result["basicdata"][0].gd);
+    
       document.getElementById(result["basicdata"][0].gd).checked = true;
     } else {
       document.getElementsByName(element)[0].value = result["basicdata"][0][element];
-      console.log(document.getElementsByName(element)[0]);
+      
     }
 
   });
   const key2 = Object.keys(result["edudata"]);
-  console.log(key2);
+ 
 
   key2.forEach((i) => {
     const datakey2 = Object.keys(result["edudata"][i]);
     datakey2.forEach(element => {
 
       document.getElementsByName(element)[i].value = result["edudata"][i][element];
-      console.log(document.getElementsByName(element)[i]);
+      
     });
   });
 
   const key3 = Object.keys(result["work"]);
-  console.log(key3, 'wwwwwwwwwwwww');
+
   key3.forEach((i) => {
     const datakey3 = Object.keys(result["work"][i]);
     datakey3.forEach(element => {
 
       document.getElementsByName(element)[i].value = result["work"][i][element];
-      console.log(document.getElementsByName(element)[i]);
+     
     });
   });
-  const key4 = Object.keys(result["referance"]);
-  console.log(key4);
-  key4.forEach((i) => {
-    const datakey4 = Object.keys(result["referance"][i]);
-    datakey4.forEach(element => {
-      document.getElementsByName(element)[i].value = result["referance"][i][element];
-      console.log(document.getElementsByName(element)[i]);
-    });
-  });
+  // const key4 = Object.keys(result["referance"]);
+ 
+  // key4.forEach((i) => {
+  //   const datakey4 = Object.keys(result["referance"][i]);
+  //   datakey4.forEach(element => {
+  //     document.getElementsByName(element)[i].value = result["referance"][i][element];
+     
+  //   });
+  // });
   const key5 = Object.keys(result["preferance"][0]);
-  console.log(key5);
+  
   key5.forEach(element => {
 
     document.getElementsByName(element)[0].value = result["preferance"][0][element];
-    console.log(document.getElementsByName(element)[0]);
+   
 
 
   });
