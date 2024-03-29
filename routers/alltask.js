@@ -7,7 +7,7 @@ const {attendanceReport}=require("../controllers/attendancecontroll");
 const {delimiterSearch,searchWithDelimeter}=require("../controllers/delemetercontroll");
 const {insertData,fetchData,updateData}=require('../controllers/ajxInUpcontroll');
 const { route } = require('./registerRouter');
-
+const {searchQuery,dynamicPagination}=require('../controllers/dynamicGirdControll');
 
 router.get("/dynamictable",(req,res)=>{
   res.render("tasks/dynamictable");
@@ -53,7 +53,18 @@ router.get('/fetchInsertUpdate/update/:id', (req, res) => {
 
 router.get('/fetchInsertUpdate/data/:id', fetchData);
 
-router.post('/fetchInsertUpdate/update/:id', updateData)
+router.post('/fetchInsertUpdate/update/:id', updateData);
+
+router.get('/dynamicGrid', (req, res) => {
+  res.render('dynamicGrid/template1');
+})
+
+
+router.post('/dynamicGrid',searchQuery)
+
+router.get('/dynamicGrid/data',dynamicPagination)
+
+
 
 
 module.exports = router;

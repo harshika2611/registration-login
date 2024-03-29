@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>template1</title>
+</head>
+<style>
+  input{
+    padding: 10px 10px;
+    font-size: 20px;
+  }
+  button{
+    padding: 10px 10px;
+  }
+  table, td, th {
+   border: 1px solid;
+ }
+ 
+ table {
+  width: 50%;
+   border-collapse: collapse;
+ }
+</style>
+<body><center>
+  <form action="/api/tasks/dynamicGrid" method="post">
+    <input placeholder="select * from tablename1" type="text" name="query" id="query">
+ <button type="submit">Go</button>
+  </form>
+ 
+</center>
+<% if(locals.rows){%>
+ 
+  <section style="text-align: center;">
+    <a href="" id="dec" onclick="decr()"> <button id="btn1">
+        << </button></a>
+    <a href="" id="dec1" onclick="dec1()"><button id="btn2">
+        < </button></a>
+    <button id="pageC">
+      <%=id%>
+    </button>
+    <a href="" id="inc1" onclick="inc1()"><button id="btn3">></button></a>
+    <a href="" id="inc" onclick="inc()"><button id="btn4">>></button></a>
+  </section>
+  <table>
+    <tr>
+      <%let keys=Object.keys(rows[0]);%>
+      <%keys.forEach((items)=>{%>
+        <th><%=items%></th>
+      <%});%>
+    </tr>
+    <%rows.forEach((items)=>{%>
+      <tr>
+        <%var values=Object.values(items);%>
+        <%values.forEach((i)=>{%>
+          <td><%=i%></td>
+          <%});%>
+      </tr>
+      <%});%>
+  </table>
+  <script>
+    let minlen = 1;
+    let maxlen = 10;
+    let pageC = document.getElementById("pageC");
+    if (pageC.innerHTML == 1) {
+      document.getElementById("btn1").disabled = true;
+      document.getElementById("btn2").disabled = true;
+    }
+    if (pageC.innerHTML == 10) {
+      document.getElementById("btn3").disabled = true;
+      document.getElementById("btn4").disabled = true;
+    }
+    function decr() {
+      let pageC = document.getElementById("pageC");
+      pageC.innerHTML = minlen;
+      document.getElementById("dec").href = `/api/tasks/dynamicGrid/data?id=${minlen}&dataQ=<%=dataQ%>&limit=<%=limit%>`
+
+    }
+    function dec1() {
+      let pageC = document.getElementById("pageC");
+      if (pageC.innerHTML > 1) {
+        pageC.innerHTML = parseInt(pageC.innerHTML) - 1;
+        document.getElementById("dec1").href = `/api/tasks/dynamicGrid/data?id=${parseInt(pageC.innerHTML)}&dataQ=<%=dataQ%>&limit=<%=limit%>`;
+
+      }
+
+    }
+    function inc1() {
+      let pageC = document.getElementById("pageC");
+      if (pageC.innerHTML < 10) {
+        pageC.innerHTML = parseInt(pageC.innerHTML) + 1;
+        document.getElementById("inc1").href = `/api/tasks/dynamicGrid/data?id=${parseInt(pageC.innerHTML)}&dataQ=<%=dataQ%>&limit=<%=limit%>`;
+
+      }
+    }
+    function inc() {
+      let pageC = document.getElementById("pageC");
+      pageC.innerHTML = maxlen;
+      document.getElementById("inc").href = `/api/tasks/dynamicGrid/data?id=${maxlen}&dataQ=<%=dataQ%>&limit=<%=limit%>`
+    }
+</script>
+<%}%>
+</body>
+</html>
