@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Job Application Form</h1>
+    <form action="" onsubmit="alert('form was submitted')">
+        <center>
+        <fieldset style="width: 40%;">
+            <legend>Basic Details</legend>
+            
+            <table>
+                <tr>
+                    <td><label for="fname">First Name</label></td>
+                    <td><input onclick="alert(`Name can't be blank`)" tabindex="1" placeholder="Enter your first name" type="text" name="fname" id="fname" ></td>
+                    <td style="padding: 10px 20px;"><label onmouseover="mOver(this)" onmouseout="mOut(this)" for="lname">Last Name</label></td>
+                    <td style="padding: 10px 20px;"><input placeholder="Enter your last name" tabindex="2" type="text" name="lname" id="lname"></td>
+                </tr>
+                <tr>
+                    <td><label onmousedown="mDown(this)" onmouseup="mUp(this)"  for="designation">Designation</label></td>
+                    <td> <input onmousemove="style.height='200px'" onmouseout="style='none'" tabindex="3" type="text" name="designation" id="designation"></td>
+                    <td style="padding: 10px 20px;"><label for="add1">Address 1</label></td>
+                    <td style="padding: 10px 20px;"><input onblur="bL()" tabindex="4" type="text" name="add1" id="add1"></td>
+                </tr>
+                <tr>
+                    <td> <label for="email">Email</label></td>
+                    <td><input onkeypress="alert('enter email')"  tabindex="6" type="text" name="email" id="email"></td>
+                    <td style="padding: 10px 20px;"><label for="add2">Address 2</label></td>
+                    <td style="padding: 10px 20px;"> <input tabindex="5" type="text" name="add2" id="add2"></td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><label for="number">Phone Number</label></td>
+                    <td rowspan="2"><input tabindex="7" type="text" name="number" id="number"></td>
+                    <td style="padding: 10px 20px;"><label for="city">City</label></td>
+                    <td style="padding: 10px 20px;"><input tabindex="8" type="text" name="city" id="city"></td>
+
+                </tr>
+                <tr>
+                    <td style="padding: 10px 20px;"><label for="state">State</label></td>
+                    <td style="padding: 10px 20px;"> <input tabindex="9" type="text" name="state" id="state"></td>
+                </tr>
+                <tr>
+                    <td><label for="gd">Gender</label></td>
+                    <td><input tabindex="10" type="radio" name="gd" id="gender">
+                        <label for="gender">Male</label>
+                    <input tabindex="11" type="radio" name="gd" id="gender1">
+                    <label for="gender1">Female</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <label for="code">Zip code</label></td>
+                    <td style="padding: 10px 20px;"><input tabindex="12" type="text" name="zip" id="code"></td>
+                </tr>
+                <tr>
+                    <td><label for="status">RelastionShip Status</label></td>
+                    <td><select tabindex="13" name="status" id="status">
+                        <option hidden></option>
+                        <option value="Single">A-Single</option>
+                        <option value="Married">A-Married</option></select></td>
+                        <td style="padding: 10px 20px;"><label for="dob">Date of Birth</label></td>
+                        <td style="padding: 10px 20px;"> <input tabindex="14" type="text" name="dob" id="dob"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset style="width: 80%;">
+            <legend>Education Details</legend>
+            <table>
+                <tr>
+                    <td>SSC Result</td>
+                   
+                </tr>
+                <tr>
+                    <td><label for="board">Name of Board</label></td>
+                    <td><input  type="text" name="board" id="board"></td>
+                    <td style="padding: 10px 20px;"><label for="py">Passing Year</label></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" min="1999" max="2124" type="number" name="py" id="py"></td>
+                    <td style="padding: 10px 20px;"><label for="percentage">Percentage</label></td>
+                    <td style="padding: 10px 20px;"><input type="number" min="1" max="99" step="0.01"  name="percentage" id="percentage"></td>
+                </tr>
+            
+                
+                <tr>
+                    
+                    <td>HSC Result</td>
+                   
+                </tr>
+                <tr>
+                    <td><label for="board">Name of Board</label></td>
+                    <td><input type="text" name="board" id="board"></td>
+                    <td style="padding: 10px 20px;"><label for="py">Passing Year</label></td>
+                    <td style="padding: 10px 20px;"> <input placeholder="YYYY" min="1999" max="2124" type="number" name="py" id="py"></td>
+                    <td style="padding: 10px 20px;"><label for="percentage">Percentage</label></td>
+                    <td style="padding: 10px 20px;"><input min="1" max="99" step="0.01" type="number" name="percentage" id="percentage"></td>
+                </tr>
+                <tr>
+                
+                    <td>bachelor degree</td>
+                </tr>
+                <tr>
+                    <td><label for="degree">Cource Name</label></td>
+                    <td><input type="text" name="degree" id="degree"></td>
+                    <td style="padding: 10px 20px;"><label for="us">University</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="us" id="us"></td>
+                    <td style="padding: 10px 20px;"><label for="py">Passing Year</label></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" min="1999" max="2124" type="number" name="py" id="py"></td>
+                    <td style="padding: 10px 20px;"><label for="percentage">Percentage</label></td>
+                    <td style="padding: 10px 20px;"><input min="1" max="99" step="0.01"  type="number" name="percentage" id="percentage"></td>
+                </tr>
+                <tr>
+                    <td>Master degree</td>
+                </tr>
+                <tr>
+                    <td><label for="degree">Cource Name</label></td>
+                    <td><input type="text" name="degree" id="degree"></td>
+                    <td style="padding: 10px 20px;"><label for="us">University</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="us" id="us"></td>
+                    <td style="padding: 10px 20px;"><label for="py">Passing Year</label></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" min="1999" max="2124" type="number" name="py" id="py"></td>
+                    <td style="padding: 10px 20px;"> <label for="percentage">Percentage</label></td>
+                    <td style="padding: 10px 20px;"><input min="1" max="99" step="0.01"  type="number" name="percentage" id="percentage"></td>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <fieldset style="width: 70%;">
+            <legend>Work Experiance</legend>
+            <table>
+                <tr>
+                    <td> <label for="name">Company name</label></td>
+                    <td><input type="text" name="name" id="name"></td>
+                    <td style="padding: 10px 20px;"> <label for="designation">Designation</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="designation" id="designation"></td>
+                    <td style="padding: 10px 20px;"><label for="date">From</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="date" id="date"></td>
+                    <td style="padding: 10px 20px;"><label for="date">To</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="date" id="date"></td>
+                </tr>
+                <tr>
+                    <td> <label for="name">Company name</label></td>
+                    <td><input type="text" name="name" id="name"></td>
+                    <td style="padding: 10px 20px;"> <label for="designation">Designation</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="designation" id="designation"></td>
+                    <td style="padding: 10px 20px;"><label for="date">From</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="date" id="date"></td>
+                    <td style="padding: 10px 20px;"><label for="date">To</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="date" id="date"></td>
+                </tr>
+                <tr>
+                    <td> <label for="name">Company name</label></td>
+                    <td><input type="text" name="name" id="name"></td>
+                    <td style="padding: 10px 20px;"> <label for="designation">Designation</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="designation" id="designation"></td>
+                    <td style="padding: 10px 20px;"><label for="date">From</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="date" id="date"></td>
+                    <td style="padding: 10px 20px;"><label for="date">To</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="date" id="date"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset style="width: 40%; display: inline-block; text-align: center; padding: 30px 15px;">
+            <legend>Language Known</legend>
+    
+            <table>
+           
+                <tr>
+                    
+                    <td><input type="checkbox" name="hindi" id="hindi">
+                    <label for="hindi">Hindi</label></td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" name="hindi" id="read1">
+                    <label for="read1">Read</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" name="hindi" id="write1">
+                    <label for="write1">Write</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="checkbox" name="hindi" id="speak1">
+                    <label for="speak1">Speak</label>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td><input type="checkbox" name="english" id="english">
+                    <label for="english">English</label></td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" name="english" id="read2">
+                    <label for="read2">Read</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" name="english" id="write2">
+                    <label for="write2">Write</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="checkbox" name="english" id="speak2">
+                    <label for="speak2">Speak</label>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td><input type="checkbox" name="guj" id="guj">
+                    <label for="guj">Gujrati</label></td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" name="guj" id="read3">
+                    <label for="read3">Read</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="checkbox" name="guj" id="write3">
+                    <label for="write3">Write</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="checkbox" name="guj" id="speak3">
+                    <label for="speak3">Speak</label>
+                    </td>
+                </tr>
+            </table>
+           
+        </fieldset>
+        <fieldset style="width: 30%; display: inline-block; text-align: center; padding: 10px 10px;">
+            <legend>Technologies </legend>
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="php" id="php">
+                    <label for="php">PHP</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="php" id="Beginer1">
+                    <label for="Beginer1">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" name="php" id="Mideator1">
+                    <label for="Mideator1">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="php" id="Expert1">
+                    <label for="Expert1">Expert</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="Mysql" id="Mysql">
+                    <label for="Mysql">Mysql</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="Mysql" id="Beginer2">
+                    <label for="Beginer2">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" name="Mysql" id="Mideator2">
+                    <label for="Mideator2">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="Mysql" id="Expert2">
+                    <label for="Expert2">Expert</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="larave" id="larave">
+                    <label for="larave">larave</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="larave" id="Beginer3">
+                    <label for="Beginer3">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" name="larave" id="Mideator3">
+                    <label for="Mideator3">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="larave" id="Expert3">
+                    <label for="Expert3">Expert</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="oracle" id="oracle">
+                    <label for="oracle">Oracle</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="oracle" id="Beginer">
+                    <label for="Beginer">Beginer</label>
+                    </td>
+                    <td style="padding: 10px 20px;"> <input type="radio" name="oracle" id="Mideator">
+                    <label for="Mideator">Mideator</label>
+                    </td>
+                    <td style="padding: 10px 20px;"><input type="radio" name="oracle" id="Expert">
+                    <label for="Expert">Expert</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </center>
+        <center>
+        <fieldset style="width: 60%;"> 
+            <legend>Referance Contact</legend>
+            <table>
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" name="name" id="name"></td>
+                    <td style="padding: 10px 20px;"> <label for="number">Contact Number</label></td>
+                    <td style="padding: 10px 20px;"><input type="number" name="number" id="number"></td>
+                    <td style="padding: 10px 20px;"> <label for="relation">Relation</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="relation" id="relation"></td>
+                </tr>
+                <tr>
+                    <td><label for="name">Name</label></td>
+                    <td><input type="text" name="name" id="name"></td>
+                    <td style="padding: 10px 20px;"> <label for="number">Contact Number</label></td>
+                    <td style="padding: 10px 20px;"><input type="number" name="number" id="number"></td>
+                    <td style="padding: 10px 20px;"> <label for="relation">Relation</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="relation" id="relation"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset style="width: 100%;">
+            <legend>Preferance</legend>
+            <table>
+                <tr>
+                    <td><label for="location">Prefered Location</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="location" id="location"></td>
+                    <td style="padding: 10px 20px;"><label for="nt">Notice Period</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="nt" id="nt"></td>
+                    <td style="padding: 10px 20px;"> <label for="Ctc">Expexted CTC</label></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="Ctc" id="Ctc"></td>
+                    <td style="padding: 10px 20px;"><label for="Ctc">Current CTC</label></td>
+                    <td style="padding: 10px 20px;"> <input type="text" name="Ctc" id="Ctc"></td>
+                    <td style="padding: 10px 20px;"><label for="dp">Department</label></td>
+                    <td style="padding: 10px 20px;"><select name="dp" name="dp" id="dp">
+                        <option hidden></option>
+                        <option value="Devlopment">B-Devlopment</option>
+                        <option value="Design">B-Design</option>
+                        <option value="Marketing">B-Marketing</option>
+                    </select></td>
+                </tr>
+            </table>
+        </fieldset>
+    </center>
+    <br><br>
+      <center> <input  type="submit" value="submit"></center>
+      <br><br><br><br>
+    </form>
+    <script src="/eventjs/script.js"></script>
+</body>
+</html>
