@@ -32,10 +32,10 @@ const getLink=async(req,res)=>{
   try {
     const link=req.params;
      const timer=await expireService(link);
-     const expeireTimer=new Date(new Date(timer).getTime()+5*60000).toTimeString();
-   
+     const expeireTimer=new Date(new Date(timer).getTime()+2*3600000).toTimeString();
+     
      const newtime=new Date().toTimeString();
- 
+   
     if(newtime<expeireTimer){
       res.render('createpass'); 
     }else{

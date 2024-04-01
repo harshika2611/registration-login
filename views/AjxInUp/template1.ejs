@@ -38,8 +38,10 @@
             <table>
                 <tr>
                  
-                    <td><label class="required" for="fname">First Name</label><span class="asterisk_input"> </span></td>
-                    <td><input tabindex="1" placeholder="Enter your first name" type="text" name="fname" id="fname"  />
+                    <td><label class="required" for="fname">First Name</label><span id="error_msg">
+                            <p id="error_fname"></p>
+                        </span></td>
+                    <td><input tabindex="1" placeholder="Enter your first name" type="text" name="fname" id="fname"/>
                     </td>
                     <td style="padding: 10px 20px;"><label for="lname">Last Name</label><span class="asterisk_input">
                         </span></td>

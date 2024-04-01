@@ -13,7 +13,7 @@ const {PORT,SECRET_KEY}=process.env;
 
 app.use(cookieParser());
 
-app.use("/",register);
+app.use("/api",register);
 
 
 app.listen(PORT,()=>{

@@ -1,1 +1,1 @@
-# This is regiatration-login repo
+# This is Regiatration-login repo

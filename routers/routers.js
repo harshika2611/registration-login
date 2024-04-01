@@ -6,13 +6,13 @@ const forgotRouter = require('../routers/forgotRoute');
 const logout=require("../routers/logoutRoute");
 const alltask=require("../routers/alltask");
 const { auth } = require('../middleware/auth');
-router.use('/',registerRouter);
-router.get('/api/login/home',auth,(req,res)=>{
+router.use('/user',registerRouter);
+router.get('/login/home',auth,(req,res)=>{
   res.render('home');
 })
-router.use('/api/login',loginRouter);
-router.use('/api/logout',logout);
-router.use('/api/forgot',forgotRouter);
-router.use('/api/tasks',alltask);
+router.use('/login',loginRouter);
+router.use('/logout',logout);
+router.use('/forgot',forgotRouter);
+router.use('/tasks',alltask);
 
 module.exports=router;

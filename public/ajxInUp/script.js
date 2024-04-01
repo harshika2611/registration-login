@@ -3,17 +3,35 @@ const next = document.getElementsByClassName(".btn-next");
 const form = document.querySelectorAll(".form1");
 let count = 0;
 
-function nextFun() {
+function nextFun() { 
+   
+    if(!validation()){
+        console.log("return here");
+      return false;
+    };      
   if (count <= 6) {
     count++;
-
   }
   if (count == 6) {
     document.getElementById("next-btn").hidden = true;
 
   }
   updatesteps();
+
 }
+
+function validation(){
+const text=document.getElementById('fname').value;
+if(!text){
+  errorMsg = "Enter valid input";
+  document.getElementById('error_fname').innerHTML = errorMsg;
+  document.getElementById('error_fname').style.color = 'red';
+  return false;
+}
+return true;
+}
+
+
 
 function prevFun() {
   if (count >= 1) {
@@ -110,9 +128,6 @@ async function fetchUpdate() {
   const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/data/${path}`);
   const result = await response.json();
  
-
-
-
   const key1 = Object.keys(result["basicdata"][0]);
   key1.forEach(element => {
 
