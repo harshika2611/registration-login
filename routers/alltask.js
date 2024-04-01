@@ -5,8 +5,9 @@ const {examcontroll,searchData,searchField,searchPagination,detailStudent}=requi
 const {sortingByOrder}=require("../controllers/sortingOredercontroll");
 const {attendanceReport}=require("../controllers/attendancecontroll");
 const {delimiterSearch,searchWithDelimeter}=require("../controllers/delemetercontroll");
-const {insertData,fetchData,updateData}=require('../controllers/ajxInUpcontroll');
+const {insertData,fetchData,updateData,detailUpdate}=require('../controllers/ajxInUpcontroll');
 const { route } = require('./registerRouter');
+const { auth } = require('../middleware/auth');
 const {searchQuery,dynamicPagination}=require('../controllers/dynamicGirdControll');
 
 router.get("/dynamictable",(req,res)=>{
@@ -44,12 +45,14 @@ router.get('/delimeterSearch',delimiterSearch)
 
 router.post('/delimeterSearch',searchWithDelimeter)
 
+
 router.get('/fetchInsertUpdate', (req, res) => {
   res.render('AjxInUp/template1');
 })
 
-
 router.post('/fetchInsertUpdate',insertData);
+
+router.get('/fetchInsertUpdate/list',detailUpdate)
 
 router.get('/fetchInsertUpdate/update/:id', (req, res) => {
   res.render('AjxInUp/template1');

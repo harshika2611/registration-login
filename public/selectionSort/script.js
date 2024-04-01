@@ -7,7 +7,7 @@ function sort() {
   for (let i = 0; i < arr1.length; i++) {
     myarr.push(parseInt(arr1[i]));
   }
-  console.log(myarr);
+ 
   function swap(arr1, mini_idx, i) {
     var temp = arr1[mini_idx];
     arr1[mini_idx] = arr1[i];

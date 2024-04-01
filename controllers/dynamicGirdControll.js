@@ -19,12 +19,12 @@ try {
 const dynamicPagination=async(req,res)=>{
 try {
   var id=req.query.id || 1 ;
-  console.log(req.query);
+  
   let startInx=(id-1)*20;
   const dataQ =req.query.dataQ;
   const limit=req.query.limit;
   const rows=await dynamicPaginationService(dataQ,startInx,limit)
-  console.log(rows);
+ 
   res.render('dynamicGrid/template1', { rows: rows,id:id,dataQ:dataQ,limit:limit})
 }catch (error) {
   console.error("error", error);

@@ -1,8 +1,7 @@
 const express = require('express');
 const router=express.Router();
 const { auth } = require('../middleware/auth');
-const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
+
 
 
 router.get('/',auth,(req,res)=>{

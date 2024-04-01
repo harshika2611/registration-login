@@ -80,11 +80,11 @@
 <script>
   
 let months= document.getElementById("Month").value;
-// document.getElementById("Month").querySelector()
+
 function month_data() {
   months = document.getElementById("Month").value;
   window.location = `/api/tasks/attendance?id=<%=id%>&month=${months}`;
-  // console.log(months);
+ 
 }
 
 

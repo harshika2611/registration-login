@@ -2,9 +2,9 @@ const {forgotServices}=require('../services/forgotServices')
 
 const forgotPass=async(req,res)=>{
  try {
-  // console.log(req.body);  
+
    const result=await forgotServices(req.body);
-  //  console.log(result);
+ 
    if(result>0){
    if(req.body.new_pass==req.body.confirm_pass){
      res.redirect('http://localhost:8050/api/login');

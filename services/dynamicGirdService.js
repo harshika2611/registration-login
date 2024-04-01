@@ -16,7 +16,7 @@ const dynamicPaginationService=async(dataQ,startInx,limit)=>{
   try {
 
     const sql1=`${dataQ} limit ${startInx},${limit}`
-    console.log(sql1);
+    
   const [result1]=await data.execute(sql1);
  
   return result1;

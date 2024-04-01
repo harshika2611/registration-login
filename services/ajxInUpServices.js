@@ -7,14 +7,14 @@ const insertDataServices = async (body, mainId) => {
       values 
       (?,?,?,?,?,?,?,?,?,?,?,?,?);`
     const [row] = await data.execute(query1, [body.fname, body.lname, body.designation, body.add1, body.add2, body.email, body.number, body.city, body.gd, body.zip, body.status, body.state, body.dob]);
-    console.log(row);
+    
 
     const year = body.year.split(',');
     const board = body.board.split(',');
     const Percentage = body.Percentage.split(',');
     for (var i = 0; i < board.length; i++) {
       if (board[i] != "" && year[i] != "" && Percentage[i] != "") {
-        console.log(i);
+       
         let query2 = `insert into education (passing_year,percentage,cource_name,basic_id)
         values
         (?,?,?,?);`
@@ -74,28 +74,28 @@ const insertDataServices = async (body, mainId) => {
     values
     (?,?,?);`
     const [result7] = await data.execute(query7, [body.technologi1, body.tech_skill1, row.insertId])
-    console.log(result7);
+    
     }
     if(body.technologi2!=undefined){
     let query8 = `insert into technology(technology_name,technology_skill,basic_id)
     values
     (?,?,?);`
     const [result8] = await data.execute(query8, [body.technologi2, body.tech_skill2, row.insertId])
-    console.log(result8);
+   
     }
     if(body.technologi3!=undefined){
     let query9 = `insert into technology(technology_name,technology_skill,basic_id)
     values
     (?,?,?);`
     const [result9] = await data.execute(query9, [body.technologi3, body.tech_skill3, row.insertId])
-    console.log(result9);
+    
     }
     if(body.technologi4!=undefined){
     let query10 = `insert into technology(technology_name,technology_skill,basic_id)
     values
     (?,?,?);`
     const [result10] = await data.execute(query10, [body.technologi4, body.tech_skill4, row.insertId])
-    console.log(result10);
+
     }
 
     if(body.refname!=undefined){
@@ -111,7 +111,7 @@ const insertDataServices = async (body, mainId) => {
       }
     }
   }
-  if(body.location!=undefined){
+  if(body.location!='' && body.nt!='' && body.Ctc1!='' && body.Ctc2!='' && body.dp!=''){
     let query12 = `insert into preferance(preferd_location,notice_period,expacted_ctc,current_ctc,department,basic_id)
   values
   (?,?,?,?,?,?);`
@@ -138,16 +138,16 @@ const fetchDataServices = async (id) => {
     var sql3 = ` SELECT companyname as name,designation as design,from_date as 'from', to_date as 'to' FROM workexperiance where basic_id=?;`
     const [rows3] = await data.execute(sql3, [id]);
 
-    var sql4 = `SELECT language_type as language1,language_skill as skill1,basic_id FROM language_known where basic_id=?;`
+    var sql4 = `SELECT language_type as language,language_skill as skill FROM language_known where basic_id=?;`
     const [rows4] = await data.execute(sql4, [id]);
 
-    var sql5 = `SELECT technology_name,technology_skill,basic_id FROM technology where basic_id=?;`
+    var sql5 = `SELECT technology_name,technology_skill FROM technology where basic_id=?;`
     const [rows5] = await data.execute(sql5, [id]);
 
-    var sql6 = `SELECT name as refname,contact_number as num,relation as relation,basic_id FROM referance where basic_id=?;`
+    var sql6 = `SELECT name as refname,contact_number as num,relation as relation FROM referance where basic_id=?;`
     const [rows6] = await data.execute(sql6, [id]);
 
-    var sql7 = `SELECT preferd_location as location,notice_period as nt,expacted_ctc as Ctc1,current_ctc as Ctc2,department as dp,basic_id FROM preferance where basic_id=?;`
+    var sql7 = `SELECT preferd_location as location,notice_period as nt,expacted_ctc as Ctc1,current_ctc as Ctc2,department as dp FROM preferance where basic_id=?;`
     const [rows7] = await data.execute(sql7, [id]);
    
 
@@ -156,6 +156,18 @@ const fetchDataServices = async (id) => {
     console.log(`Error`, error)
     throw error;
   }
+}
+
+const detailUpdateServices=async(id)=>{
+try {
+ const query1=`select basic_id,first_name,last_name,email,city,state from basic_detail`
+ const [ans]=await data.execute(query1)
+
+ return ans;
+} catch (error) {
+  console.log(`Error`, error)
+  throw error;
+}
 }
 
 const updateDataServices=async(body,id)=>{
@@ -167,11 +179,11 @@ try {
   SELECT referance_id FROM referance where  basic_id=${id};`
   
  const [result] =await data.query(sql0);
- console.log(result);
+ 
 
 var sql1 = `update basic_detail set first_name=?,last_name=?,designation=?,address1=?,address2=?,email=?,phone_number=?,city=?,gender=?,zip_code=?,relationashi_status=?,state=?,date_of_birth=? where basic_id=?;`    
 const [result1]=await data.execute(sql1,[body.fname,body.lname,body.designation,body.add1,body.add2,body.email,body.number,body.city,body.gd,body.zip,body.status,body.state,body.dob,id]);
-console.log(result1);
+
 
 
 
@@ -183,7 +195,7 @@ const board = body.board.split(',');
       if (element!="") {       
         var sql2 = `update education set passing_year=?,percentage=?,cource_name=? where education_id=?;`  
       const [result2]= await data.execute(sql2,[element,Percentage[i],board[i],result[0][i].education_id]);
-      console.log(result2);
+    
       }                   
       i++
     });
@@ -198,7 +210,7 @@ const board = body.board.split(',');
               var sql3 = `update workexperiance set companyname=?,designation=?,from_date=?,to_date=? where workexperiance_id=?;`
             
             const [result3]=await data.query(sql3,[element,design[i],from[i],to[i],result[1][i].workexperiance_id]);
-            console.log(result3,"gives result3");
+            
             }                   
             i++
           });
@@ -208,7 +220,7 @@ const board = body.board.split(',');
           const skill1 = body.skill1.split(',');
           for (var i = 0; i < skill1.length; i++) {
             var sql4 = `update language_known set language_type=?,language_skill=? where basic_id=?;`
-            console.log(sql4);
+          
           const [result4]=await data.execute(sql4,[language1,skill1[i],result[2][i].language_id]);
           }
         }
@@ -217,7 +229,7 @@ const board = body.board.split(',');
           const skill2 = body.skill2.split(',');
           for (var i = 0; i < skill2.length; i++) {
             var sql5 = `update language_known set language_type=?,language_skill=? where basic_id=?;`
-            console.log(sql5);
+            
           const [result5]=await data.execute(sql5,[language2,skill2[i],result[2][i].language_id]);
           }
         }
@@ -226,7 +238,7 @@ const board = body.board.split(',');
           const skill3 = body.skill3.split(',');
           for (var i = 0; i < skill3.length; i++) {
             var sql6 = `update language_known set language_type=?,language_skill=? where basic_id=?;`
-            console.log(sql6);
+           
           const [result6]=await data.execute(sql6,[language3,skill3[i],result[2][i].language_id]);
           }
         }
@@ -237,22 +249,22 @@ const board = body.board.split(',');
              var i =0
              refname.forEach(async (element) => { 
                 if (element!="") {
-                  console.log(result[4][i]);
+               
                   var sql6 = `update referance set name=?,contact_number=?,relation=? where referance_id=?;`
-                  console.log(sql6);
+                
                 const [result6]=await data.query(sql6, [element,num[i],relation[i],result[4][i].referance_id]);
-                console.log(result6);
+                
                 }                   
                 i++
               });
 
               var sql7 = `update preferance set preferd_location=?,notice_period=?,expacted_ctc=?,current_ctc=?,department=? where basic_id=?;`    
               const [result7]=await data.execute(sql7,[body.location,body.nt,body.Ctc1,body.Ctc2,body.dp,id]);
-              console.log(result7);   
+               
 
 } catch (error) {
   console.log(`Error`, error)
     throw error;
 }
 }
-module.exports = { insertDataServices, fetchDataServices,updateDataServices};
+module.exports = { insertDataServices, fetchDataServices,updateDataServices,detailUpdateServices};

@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var cookieParser = require('cookie-parser');
+
 require("dotenv").config();
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -9,7 +11,10 @@ app.set('view engine', 'ejs');
 const register=require('./routers/routers')
 const {PORT,SECRET_KEY}=process.env;
 
-app.use("/api",register);
+app.use(cookieParser());
+
+app.use("/",register);
+
 
 app.listen(PORT,()=>{
   console.log(`port running ${PORT}`);

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+    table, td, th {
+  border: 1px solid;
+}
+table {
+ width: 50%;
+  border-collapse: collapse;
+}
+</style>
+<body>
+  <center>
+    <table>
+      <tr>
+        <th>Userid</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>State</th>
+      </tr>
+      <%for(let i=0; i<rows.length; i++){%>
+          <tr>
+        <td><%=rows[i].basic_id%></td>  
+        <td><%=rows[i].first_name%></td>
+        <td><%=rows[i].last_name%></td>
+        <td><%=rows[i].email%></td>
+        <td><%=rows[i].city%></td>
+        <td><%=rows[i].state%></td>
+        <td><a href="/api/tasks/fetchInsertUpdate/update/<%=rows[i].basic_id%>"><button>Update</button></a></td>
+      </tr>
+        <% } %>
+    </table>
+  </center>
+</body>
+</html>

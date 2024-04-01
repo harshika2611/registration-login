@@ -35,7 +35,7 @@ try {
   from examMaster1  inner join studentMaster1 on studentMaster1.studentId=examMaster1.studentId where studentMaster1.studentId=${sid}
   group by studentMaster1.studentId ;`
   const [result1]=await data.execute(sql1);
-  console.log(result1);
+  
   return result1;
 } catch (error) {
   console.log(`Error`, error)
@@ -57,9 +57,9 @@ const searchFieldServices=async(search,firstName,lastName)=>{
     from examMaster1  inner join studentMaster1 on studentMaster1.studentId=examMaster1.studentId 
     where studentMaster1.firstName like '%${firstName}%' ${search} studentMaster1.lastName like '%${lastName}%'
     group by studentMaster1.studentId ;`
-console.log(sql3);
+
     const [result3]=await data.execute(sql3);
-    console.log(result3);
+ 
     return result3;
   } catch (error) {
     console.log(`Error`, error)

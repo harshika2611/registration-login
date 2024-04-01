@@ -62,7 +62,7 @@ async function updatebtn() {
     body: updateData,
   });
 
- 
+
 }
 
 async function submitbtn() {
@@ -83,15 +83,15 @@ async function submitbtn() {
   const data = JSON.stringify(serialData);
   const response = await fetch("http://localhost:8050/api/tasks/fetchInsertUpdate", {
     method: "post",
-   
+
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
     body: data,
   });
+  window.location.replace("http://localhost:8050/api/tasks/fetchInsertUpdate/list");
 
-  
 }
 
 if (window.location.pathname.split("/").includes('update')) {
@@ -107,80 +107,112 @@ else {
 
 async function fetchUpdate() {
   const path = window.location.pathname.split("/")[5];
-  
   const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/data/${path}`);
   const result = await response.json();
-console.log(result);
+ 
+
+
 
   const key1 = Object.keys(result["basicdata"][0]);
-
   key1.forEach(element => {
+
     if (element == 'gd') {
-    
+
       document.getElementById(result["basicdata"][0].gd).checked = true;
     } else {
       document.getElementsByName(element)[0].value = result["basicdata"][0][element];
-      
     }
-
   });
-  const key2 = Object.keys(result["edudata"]);
- 
 
+
+  const key2 = Object.keys(result["edudata"]);
   key2.forEach((i) => {
     const datakey2 = Object.keys(result["edudata"][i]);
     datakey2.forEach(element => {
 
       document.getElementsByName(element)[i].value = result["edudata"][i][element];
-      
+
     });
   });
 
-  const key3 = Object.keys(result["work"]);
 
+
+  const key3 = Object.keys(result["work"]);
   key3.forEach((i) => {
     const datakey3 = Object.keys(result["work"][i]);
     datakey3.forEach(element => {
-
       document.getElementsByName(element)[i].value = result["work"][i][element];
-     
     });
   });
-  // const key4 = Object.keys(result["referance"]);
- 
-  // key4.forEach((i) => {
-  //   const datakey4 = Object.keys(result["referance"][i]);
-  //   datakey4.forEach(element => {
-  //     document.getElementsByName(element)[i].value = result["referance"][i][element];
-     
-  //   });
-  // });
-  const key5 = Object.keys(result["preferance"][0]);
-  
-  key5.forEach(element => {
-
-    document.getElementsByName(element)[0].value = result["preferance"][0][element];
-   
 
 
+
+  const key4 = Object.keys(result["referance"]);
+
+  key4.forEach((i) => {
+    const datakey4 = Object.keys(result["referance"][i]);
+    datakey4.forEach(element => {
+    
+      document.getElementsByName(element)[i].value = result["referance"][i][element];
+
+    });
   });
-  // const key6 = Object.keys(result["lang"]);
-  // console.log(key6, "aaaaaaaaaaaaaaaaaaa");
-  // key6.forEach((element) => {
 
-  //   const datakey6 = Object.values(result["lang"][0]);
-  //   console.log(element);
-  //   // console.log(datakey6, "bbbbbb");
-  //   console.log(result["lang"][element].language1, "abababab");
-  //   const temp=  document.getElementsByName('language1');
-  //  temp.forEach(item => {
-  //   if(item.value==result["lang"][element].language1){
-  //     item.checked = true;
-  //   }
-  //  });
-   
+  if (result["preferance"][0] != undefined) {
 
-  // });
+    const key5 = Object.keys(result["preferance"][0]);
+    key5.forEach(element => {
+      document.getElementsByName(element)[0].value = result["preferance"][0][element];
+    });
+  }
+
+  const key6 = Object.keys(result["lang"]);
+  console.log(key6);
+  key6.forEach((i) => {
+    console.log(i);
+    const datakey6 = Object.values(result["lang"][i]);
+    console.log(datakey6, "arr");
+    console.log(result["lang"][i].language1, "hin");
+
+    datakey6.forEach(element => {
+    if(element=="hindi"){
+     if(document.getElementsByName('skill1')[0].value == result["lang"][i].skill1){
+      document.getElementsByName('skill1')[0].checked=true
+     } 
+      document.getElementById(element).checked = true;
+
+    }
+      
+    });
+
+    if (result["lang"][i].language1 == "hindi") {
+
+      document.getElementById(result["lang"][i].language1).checked = true;
+
+    }
+    if (result["lang"][i].language1 == "English") {
+
+      document.getElementById(result["lang"][i].language1).checked = true;
+    }
+    if (result["lang"][i].language1 == "Gujrati") {
+
+      document.getElementById(result["lang"][i].language1).checked = true;
+    }
+
+    // datakey6.forEach(element => {
+    //   console.log(element,"element");
+    //   if(element=="hindi"){
+    //     document.getElementById(element).checked=true;
+    //     // console.log(result["lang"][i][element],"ans");
+
+    //   }
+    //   if(element=="English"){
+    //     console.log(result["lang"][i][element],"ans");
+    //     document.getElementById(element).checked=true;
+    //   }
+
+    // });
+  });
 
 
 }

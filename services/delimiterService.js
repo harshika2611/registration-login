@@ -16,9 +16,9 @@ const searchDelimeterServices=async(obj)=>{
     function sqlQuery() {
       var sql = `select * from studentMaster where`
       var list = Object.keys(obj);
-      console.log(obj,"cc");
+  
       for (let i = 0; i < obj.length; i++) {
-        console.log(obj,"ccccccccccccccccc");
+      
         if (obj[list[i]].length > 0) {
           switch (list[i]) {
             case "_":
@@ -148,7 +148,7 @@ const searchDelimeterServices=async(obj)=>{
       }
     }
   const [result1]=await data.execute(sqlQuery());
-  console.log(result1);
+
   } catch (error) {
     console.log(`Error`, error)
   throw error;

@@ -14,9 +14,9 @@ try {
 const searchWithDelimeter=async(req,res)=>{
 try {
   var delim = req.body.delimeter;
-  console.log(delim);
+
   const obj = {}
-  console.log(obj);
+
 
   obj[":"] = [];
   obj["}"] = [];

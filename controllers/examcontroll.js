@@ -21,16 +21,16 @@ res.render('examReport/template1',{rows:rows,id:id,get:get});
 
 const searchData=async(req,res)=>{
   try {
-  console.log(req.body.id);
+
   if(req.query.id==undefined){
     var id=1;   
   }else{
     id=parseInt(req.query.id);
   }
   const sid=req.body.sid;
-  console.log(sid);
+
     const rows= await searchDataServices(sid);
-console.log(rows);
+
 res.render('examReport/template1',{rows:rows,id:id})
   } catch (error) {
      console.error("error", error);
@@ -45,7 +45,7 @@ try {
    const search=req.body.search;
    const firstName=req.body.firstName;
    const lastName=req.body.lastName ;
- console.log(firstName);
+
  const inputtext=[];
  inputtext.push(req.body.search);
  inputtext.push(req.body.firstName);
@@ -62,7 +62,7 @@ const searchPagination=async(req,res)=>{
 try {
   var id=req.query.id||1 ;
  const inputtext= req.query.inputtext.split(',');
-//  console.log(searcArr);
+
 let startInx=(id-1)*50;
 let limit=50;
   const search=req.query.search;
