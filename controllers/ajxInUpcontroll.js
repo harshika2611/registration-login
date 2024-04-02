@@ -15,7 +15,6 @@ const insertData=async(req,res)=>{
 const fetchData=async(req,res)=>{
 try {
   const id = req.params.id;
-
   const ans=await fetchDataServices(id);
   res.json({ basicdata: ans.basicdata, edudata: ans.edudata, work: ans.work, lang: ans.lang, tech: ans.tech, referance: ans.referance, preferance: ans.preferance })
 } catch (error) {

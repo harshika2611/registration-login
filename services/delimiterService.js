@@ -43,7 +43,7 @@ const searchDelimeterServices=async(obj)=>{
           }
         }
       }
-     
+      console.log(sql);
       return sql;
     }
     function firstname(obj) {

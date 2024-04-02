@@ -7,7 +7,7 @@ const forgotPass=async(req,res)=>{
  
    if(result>0){
    if(req.body.new_pass==req.body.confirm_pass){
-     res.redirect('http://localhost:8050/api/login');
+     res.redirect(`${process.env.URL}/api/login`);
    
    }else{
     const error_forgot="Password not matched"

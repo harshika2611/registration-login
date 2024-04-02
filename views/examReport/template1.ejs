@@ -51,7 +51,7 @@ table {
     </div>
   </div>
   <button id="searchBtn" onclick="searchBtn()">Show More</button>
-  <% if(locals.inputtext || locals.post){%>
+  <% if(locals.inputtext){%>
     
     <section style="text-align: center;">
       <a href="" id="dec" onclick="decr()"> <button id="btn1">
@@ -105,7 +105,7 @@ table {
       document.getElementById("inc").href = `/api/tasks/exam/sea?id=${maxlen}&firstName=<%=firstName%>&lastname=<%=lastName%>&search=<%=search%>`
     }
     </script>
-    <%}else if(locals.rows && locals.post){%>
+    <%}else if(locals.rows){%>
       <section style="text-align: center;">
         <a href="" id="dec" onclick="decr()"> <button id="btn1">
             << </button></a>
@@ -133,14 +133,14 @@ table {
           function decr() {
             let pageC = document.getElementById("pageC");
             pageC.innerHTML = minlen;
-            document.getElementById("dec").href = `/?id=${(minlen)}`
+            document.getElementById("dec").href = `/api/tasks/exam/?id=${(minlen)}`
       
           }
           function dec1() {
             let pageC = document.getElementById("pageC");
             if (pageC.innerHTML > 1) {
               pageC.innerHTML = parseInt(pageC.innerHTML) - 1;
-              document.getElementById("dec1").href = `/?id=${parseInt(pageC.innerHTML)}`
+              document.getElementById("dec1").href = `/api/tasks/exam/?id=${parseInt(pageC.innerHTML)}`
       
             }
       
@@ -149,14 +149,14 @@ table {
             let pageC = document.getElementById("pageC");
             if (pageC.innerHTML < 4) {
               pageC.innerHTML = parseInt(pageC.innerHTML) + 1;
-              document.getElementById("inc1").href = `/?id=${parseInt(pageC.innerHTML)}`
+              document.getElementById("inc1").href = `/api/tasks/exam/?id=${parseInt(pageC.innerHTML)}`
       
             }
           }
           function inc() {
             let pageC = document.getElementById("pageC");
             pageC.innerHTML = maxlen;
-            document.getElementById("inc").href = `/?id=${maxlen}`
+            document.getElementById("inc").href = `/api/tasks/exam/?id=${maxlen}`
           }
        
       </script>

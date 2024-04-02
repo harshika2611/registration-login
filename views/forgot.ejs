@@ -22,7 +22,11 @@
 </style>
 <body>
   <h2>Create Password here</h2>
+ 
  <form method="post">
+   <%if(locals.error_expire){%>
+    <div style="color: red;"><%=error_expire%></div>
+    <%}%> 
   <label for="regi_email">Email</label>
   <input type="email" name="Email" placeholder="xyz@gmail.com" id="regi_email"  required>  
   <label for="new_pass">New Password</label>
@@ -31,6 +35,8 @@
   <input type="password" name="confirm_pass" class="confirm_pass" id="confirm_pass" required>
   <%if(locals.error_forgot){%>
     <div style="color: red;"><%=error_forgot%></div>
+    
+
   <%}%>
     
   <button type="submit">Generate</button>

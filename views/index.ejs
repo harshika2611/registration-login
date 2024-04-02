@@ -39,7 +39,7 @@
    <% if(locals.msg){%>
     <div style="color: red;"><%=msg%></div>
     <%}%>
-    <div><a href="http://localhost:8050/api/login">Sign in</a></div>
+    <div><a href="<%=process.env.URL%>/api/login">Sign in</a></div>
   </div>
   <button type="submit" id="submit">Submit</button>
  

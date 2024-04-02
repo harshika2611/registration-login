@@ -22,7 +22,11 @@
 </style>
 <body>
   <h2>Create Password here</h2>
+ 
  <form method="post">
+  <%if(locals.error_expire){%>
+    <div style="color: red;"><%=error_expire%></div>
+    <%}%>
   <label for="create_pass">Create Password</label>
   <input type="text" name="create_pass" class="create_pass" id="create_pass" required>
   <label for="repeat_pass">Confirm Password</label>

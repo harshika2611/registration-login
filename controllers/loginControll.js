@@ -2,41 +2,59 @@ const { UserLoginService } = require("../services/loginServices");
 const md5 = require("md5");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY,URL } = process.env;
 
 const userLogin = async (req, res) => {
   try {
-
+    // console.log(req.body);
     const user = await UserLoginService(req.body);
+    // console.log(user);
     const email = req.body.Email;
-    if (user.length > 0) {
-      const password = md5(user[0].sault + req.body.password);
-
-      if (password == user[0].regi_password) {
-
-        const token = jwt.sign({ email: email }, SECRET_KEY,{expiresIn:'1h'});
+    if(user[0].status=="Active"){
+      const timer=user[0].date;
+      const newtime=new Date().toDateString();
      
-        return res
-        .cookie("token",token,{
-          httpOnly:true
-        })
-        .redirect("http://localhost:8050/api/login/home")
-       
-        // const cookie = res.cookie('token',token, {
-        //   httpOnly:true,  
-        //   maxAge:60
-        // })
-  
-        // res.render("home",{email,cookie})
-        
-      } else {
-        const error = "Invalid email or password"
-        res.render("login", { error: error })
-      }
+      const expeireTimer=new Date(new Date(timer).getTime()+96*8640000).toDateString();   
 
-    } else {
+      if(newtime>expeireTimer){
+        if (user.length > 0) {
+          const password = md5(user[0].sault + req.body.password);
+    
+          if (password == user[0].regi_password) {
+    
+            const token = jwt.sign({ email: email }, SECRET_KEY,{expiresIn:'1h'});
+
+            return res
+            .cookie("token",token,{
+              httpOnly:true
+            })
+            .redirect(`${URL}/api/login/home`)
+           
+            // const cookie = res.cookie('token',token, {
+            //   httpOnly:true,  
+            //   maxAge:60
+            // })
+      
+            // res.render("home",{email,cookie})
+            
+          } else {
+            const error = "Invalid email or password"
+            res.render("login", { error: error })
+          }
+    
+        } else {
+          const error = "Invalid email or password"
+          res.render("login", { error: error })
+        }
+      }else{
+        const error = "expired password create new one"
+        // res.render("forgot", { error_expire: error })
+        // req.flash("error_expire", "expired password create new one")
+        res.redirect(`${process.env.URL}/api/forgot`)
+      }
+    }else {
       const error = "Invalid email or password"
-      res.render("login", { error: error },"+++++++++++")
+      res.render("login", { error: error })
     }
 
   } catch (error) {

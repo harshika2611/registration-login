@@ -71,7 +71,7 @@ async function updatebtn() {
   }
   const updateData = JSON.stringify(serialData);
 
-  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/update/${id}`, {
+  const response = await fetch(`${process.env.URL}/api/tasks/fetchInsertUpdate/update/${id}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -99,7 +99,7 @@ async function submitbtn() {
     }
   }
   const data = JSON.stringify(serialData);
-  const response = await fetch("http://localhost:8050/api/tasks/fetchInsertUpdate", {
+  const response = await fetch(`${process.env.URL}/api/tasks/fetchInsertUpdate`, {
     method: "post",
 
     headers: {
@@ -108,7 +108,7 @@ async function submitbtn() {
     },
     body: data,
   });
-  window.location.replace("http://localhost:8050/api/tasks/fetchInsertUpdate/list");
+  window.location.replace(`${process.env.URL}/api/tasks/fetchInsertUpdate/list`);
 
 }
 
@@ -125,7 +125,7 @@ else {
 
 async function fetchUpdate() {
   const path = window.location.pathname.split("/")[5];
-  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/data/${path}`);
+  const response = await fetch(`${process.env.URL}/api/tasks/fetchInsertUpdate/data/${path}`);
   const result = await response.json();
  
   const key1 = Object.keys(result["basicdata"][0]);

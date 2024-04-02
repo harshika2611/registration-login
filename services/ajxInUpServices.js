@@ -127,7 +127,6 @@ const insertDataServices = async (body, mainId) => {
 
 const fetchDataServices = async (id) => {
   try {
-
     var sql1 = `SELECT first_name as fname,last_name as lname,designation,address1 as add1,address2 as add2,email as email,phone_number as number,
   city as city,gender as gd,zip_code as zip,relationashi_status as status,state as state,date_of_birth as dob FROM basic_detail where basic_id=?;`
     const [rows] = await data.execute(sql1, [id]);

@@ -8,7 +8,7 @@ router.get('/',auth,(req,res)=>{
   const token=req.headers.cookie.split('=')[1];
   return res.clearCookie("token")
   .status(200)
-  .redirect('http://localhost:8050/api/login');
+  .redirect(`${process.env.URL}/api/login`);
 })
 
 
