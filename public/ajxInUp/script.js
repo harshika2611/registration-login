@@ -2,11 +2,49 @@ const prev = document.getElementsByClassName(".btn-prev");
 const next = document.getElementsByClassName(".btn-next");
 const form = document.querySelectorAll(".form1");
 let count = 0;
-function nextFun() { 
-  console.log(validation());
-    if(!validation()){
-      return false;
-    }     
+function nextFun() {
+
+  switch (count) {
+    case 0:
+      if (!basicDetailValidation()) {
+        return;
+      }
+      break;
+    case 1:
+      if (!eduValidation()) {
+        return;
+      }
+      break;
+    case 2:
+      if (!workValidation()) {
+        return;
+      }
+      break;
+    case 3:
+      if (!langValidation()) {
+        return;
+      }
+      break;
+    case 4:
+      if (!techValidation()) {
+        return;
+      }
+      break;
+    case 5:
+      if (!refValidation()) {
+        return;
+      }
+      break;
+    case 6:
+      if (!prefValidation()) {
+        return;
+      }
+      break;
+    default:
+      break;
+  }
+
+
   if (count <= 6) {
     count++;
   }
@@ -40,9 +78,9 @@ function updatesteps() {
 }
 
 async function updatebtn() {
-  if(!validation()){
+  if (!validation()) {
     return false;
-  } 
+  }
   const id = window.location.pathname.split("/")[5];
 
   const form = document.getElementById("form");
@@ -74,9 +112,9 @@ async function updatebtn() {
 }
 
 async function submitbtn() {
-  if(!validation()){
+  if (!validation()) {
     return false;
-  }   
+  }
   const form = document.getElementById("form");
   const formData = new FormData(form);
   const serialData = {};
@@ -145,7 +183,7 @@ async function fetchUpdate() {
 
 
   const key3 = Object.keys(result["work"]);
-  
+
   key3.forEach((i) => {
     const datakey3 = Object.keys(result["work"][i]);
     datakey3.forEach(element => {
@@ -158,7 +196,7 @@ async function fetchUpdate() {
   key4.forEach((i) => {
     const datakey4 = Object.keys(result["referance"][i]);
     datakey4.forEach(element => {
-    
+
       document.getElementsByName(element)[i].value = result["referance"][i][element];
 
     });
@@ -179,115 +217,115 @@ async function fetchUpdate() {
         case "read":
           document.getElementById("skillH1").checked = true
           break;
-          case "write":
-            document.getElementById("skillH2").checked = true
-            break;
-            case "speak":
-              document.getElementById("skillH3").checked = true
-              break;
+        case "write":
+          document.getElementById("skillH2").checked = true
+          break;
+        case "speak":
+          document.getElementById("skillH3").checked = true
+          break;
         default:
           break;
       }
-    }else if(element.language=="English"){
-      document.getElementById("language2").checked=true
+    } else if (element.language == "English") {
+      document.getElementById("language2").checked = true
       switch (element.skill) {
         case "read":
           document.getElementById("skillE1").checked = true
           break;
-          case "write":
-            document.getElementById("skillE2").checked = true
-            break;
-            case "speak":
-              document.getElementById("skillE3").checked = true
-              break;
+        case "write":
+          document.getElementById("skillE2").checked = true
+          break;
+        case "speak":
+          document.getElementById("skillE3").checked = true
+          break;
         default:
           break;
       }
     }
-    else if(element.language=="Gujrati"){
-      document.getElementById("language3").checked=true
+    else if (element.language == "Gujrati") {
+      document.getElementById("language3").checked = true
       switch (element.skill) {
         case "read":
           document.getElementById("skillG1").checked = true
           break;
-          case "write":
-            document.getElementById("skillG2").checked = true
-            break;
-            case "speak":
-              document.getElementById("skillG3").checked = true
-              break;
+        case "write":
+          document.getElementById("skillG2").checked = true
+          break;
+        case "speak":
+          document.getElementById("skillG3").checked = true
+          break;
         default:
           break;
       }
     }
- });
+  });
 
 
 
-Object.keys(result["tech"]).forEach((i)=>{
+  Object.keys(result["tech"]).forEach((i) => {
 
-const key6=result["tech"][i];
-if(result["tech"][i].technology_name=="PHP"){
-  document.getElementById("technologi1").checked=true;
-  if(result["tech"][i].technology_skill=="Beginer"){
-    document.getElementById("Beginer1").checked=true;
-  }else if(result["tech"][i].technology_skill=="Mideator"){
-    document.getElementById("Mideator1").checked=true;
-  }else if(result["tech"][i].technology_skill=="Expert"){
-    document.getElementById("Expert1").checked=true;
-  }
-}
-if(result["tech"][i].technology_name=="Mysql"){
-  document.getElementById("technologi2").checked=true;
-  if(result["tech"][i].technology_skill=="Beginer"){
-    document.getElementById("Beginer2").checked=true;
-  }else if(result["tech"][i].technology_skill=="Mideator"){
-    document.getElementById("Mideator2").checked=true;
-  }else if(result["tech"][i].technology_skill=="Expert"){
-    document.getElementById("Expert2").checked=true;
-  }
-}
-if(result["tech"][i].technology_name=="Larave"){
-  document.getElementById("technologi3").checked=true;
-  if(result["tech"][i].technology_skill=="Beginer"){
-    document.getElementById("Beginer3").checked=true;
-  }else if(result["tech"][i].technology_skill=="Mideator"){
-    document.getElementById("Mideator3").checked=true;
-  }else if(result["tech"][i].technology_skill=="Expert"){
-    document.getElementById("Expert3").checked=true;
-  }
-}
-if(result["tech"][i].technology_name=="Oracle"){
-  document.getElementById("technologi4").checked=true;
-  if(result["tech"][i].technology_skill=="Beginer"){
-    document.getElementById("Beginer4").checked=true;
-  }else if(result["tech"][i].technology_skill=="Mideator"){
-    document.getElementById("Mideator4").checked=true;
-  }else if(result["tech"][i].technology_skill=="Expert"){
-    document.getElementById("Expert4").checked=true;
-  }
-}
+    const key6 = result["tech"][i];
+    if (result["tech"][i].technology_name == "PHP") {
+      document.getElementById("technologi1").checked = true;
+      if (result["tech"][i].technology_skill == "Beginer") {
+        document.getElementById("Beginer1").checked = true;
+      } else if (result["tech"][i].technology_skill == "Mideator") {
+        document.getElementById("Mideator1").checked = true;
+      } else if (result["tech"][i].technology_skill == "Expert") {
+        document.getElementById("Expert1").checked = true;
+      }
+    }
+    if (result["tech"][i].technology_name == "Mysql") {
+      document.getElementById("technologi2").checked = true;
+      if (result["tech"][i].technology_skill == "Beginer") {
+        document.getElementById("Beginer2").checked = true;
+      } else if (result["tech"][i].technology_skill == "Mideator") {
+        document.getElementById("Mideator2").checked = true;
+      } else if (result["tech"][i].technology_skill == "Expert") {
+        document.getElementById("Expert2").checked = true;
+      }
+    }
+    if (result["tech"][i].technology_name == "Larave") {
+      document.getElementById("technologi3").checked = true;
+      if (result["tech"][i].technology_skill == "Beginer") {
+        document.getElementById("Beginer3").checked = true;
+      } else if (result["tech"][i].technology_skill == "Mideator") {
+        document.getElementById("Mideator3").checked = true;
+      } else if (result["tech"][i].technology_skill == "Expert") {
+        document.getElementById("Expert3").checked = true;
+      }
+    }
+    if (result["tech"][i].technology_name == "Oracle") {
+      document.getElementById("technologi4").checked = true;
+      if (result["tech"][i].technology_skill == "Beginer") {
+        document.getElementById("Beginer4").checked = true;
+      } else if (result["tech"][i].technology_skill == "Mideator") {
+        document.getElementById("Mideator4").checked = true;
+      } else if (result["tech"][i].technology_skill == "Expert") {
+        document.getElementById("Expert4").checked = true;
+      }
+    }
 
-})
-
-
-
-
+  })
 
 
 
 
 
 
-  
+
+
+
+
+
   // key6.forEach((i) => {
   //   const datakey6=Object.keys(result["lang"][i]);
   //   console.log(datakey6,"data");
 
   //   datakey6.forEach(element => {
   //     console.log(element,"log");
-      
-      
+
+
   //     console.log(document.getElementById("language"+p),"final");
   //     // console.log(document.getElementById("skill",arr[k]+i),"valllll");
   //     // document.getElementById("language"+p).checked=true;
@@ -296,7 +334,7 @@ if(result["tech"][i].technology_name=="Oracle"){
   //   p++;
   //   k++;
   // });
-  
+
 
 }
 
