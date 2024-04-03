@@ -2,13 +2,11 @@ const prev = document.getElementsByClassName(".btn-prev");
 const next = document.getElementsByClassName(".btn-next");
 const form = document.querySelectorAll(".form1");
 let count = 0;
-
 function nextFun() { 
-   
+  console.log(validation());
     if(!validation()){
-        console.log("return here");
       return false;
-    };      
+    }     
   if (count <= 6) {
     count++;
   }
@@ -20,20 +18,8 @@ function nextFun() {
 
 }
 
-function validation(){
-const text=document.getElementById('fname').value;
-if(!text){
-  errorMsg = "Enter valid input";
-  document.getElementById('error_fname').innerHTML = errorMsg;
-  document.getElementById('error_fname').style.color = 'red';
-  return false;
-}
-return true;
-}
-
-
-
 function prevFun() {
+
   if (count >= 1) {
     count--;
   }
@@ -45,6 +31,7 @@ function prevFun() {
 }
 
 function updatesteps() {
+
   form.forEach((element) => {
     element.classList.contains("from-active") &&
       element.classList.remove("from-active");
@@ -53,6 +40,9 @@ function updatesteps() {
 }
 
 async function updatebtn() {
+  if(!validation()){
+    return false;
+  } 
   const id = window.location.pathname.split("/")[5];
 
   const form = document.getElementById("form");
@@ -84,6 +74,9 @@ async function updatebtn() {
 }
 
 async function submitbtn() {
+  if(!validation()){
+    return false;
+  }   
   const form = document.getElementById("form");
   const formData = new FormData(form);
   const serialData = {};
@@ -99,7 +92,7 @@ async function submitbtn() {
     }
   }
   const data = JSON.stringify(serialData);
-  const response = await fetch(`${process.env.URL}/api/tasks/fetchInsertUpdate`, {
+  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate`, {
     method: "post",
 
     headers: {
@@ -108,7 +101,7 @@ async function submitbtn() {
     },
     body: data,
   });
-  window.location.replace(`${process.env.URL}/api/tasks/fetchInsertUpdate/list`);
+  window.location.replace(`http://localhost:8050/api/tasks/fetchInsertUpdate/list`);
 
 }
 
@@ -125,12 +118,11 @@ else {
 
 async function fetchUpdate() {
   const path = window.location.pathname.split("/")[5];
-  const response = await fetch(`${process.env.URL}/api/tasks/fetchInsertUpdate/data/${path}`);
+  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/data/${path}`);
   const result = await response.json();
- 
+
   const key1 = Object.keys(result["basicdata"][0]);
   key1.forEach(element => {
-
     if (element == 'gd') {
 
       document.getElementById(result["basicdata"][0].gd).checked = true;
@@ -153,14 +145,13 @@ async function fetchUpdate() {
 
 
   const key3 = Object.keys(result["work"]);
+  
   key3.forEach((i) => {
     const datakey3 = Object.keys(result["work"][i]);
     datakey3.forEach(element => {
       document.getElementsByName(element)[i].value = result["work"][i][element];
     });
   });
-
-
 
   const key4 = Object.keys(result["referance"]);
 
@@ -174,61 +165,138 @@ async function fetchUpdate() {
   });
 
   if (result["preferance"][0] != undefined) {
-
     const key5 = Object.keys(result["preferance"][0]);
     key5.forEach(element => {
       document.getElementsByName(element)[0].value = result["preferance"][0][element];
     });
   }
 
-  const key6 = Object.keys(result["lang"]);
-  console.log(key6);
-  key6.forEach((i) => {
-    console.log(i);
-    const datakey6 = Object.values(result["lang"][i]);
-    console.log(datakey6, "arr");
-    console.log(result["lang"][i].language1, "hin");
 
-    datakey6.forEach(element => {
-    if(element=="hindi"){
-     if(document.getElementsByName('skill1')[0].value == result["lang"][i].skill1){
-      document.getElementsByName('skill1')[0].checked=true
-     } 
-      document.getElementById(element).checked = true;
-
+  result["lang"].forEach(element => {
+    if (element.language == "hindi") {
+      document.getElementById("language1").checked = true;
+      switch (element.skill) {
+        case "read":
+          document.getElementById("skillH1").checked = true
+          break;
+          case "write":
+            document.getElementById("skillH2").checked = true
+            break;
+            case "speak":
+              document.getElementById("skillH3").checked = true
+              break;
+        default:
+          break;
+      }
+    }else if(element.language=="English"){
+      document.getElementById("language2").checked=true
+      switch (element.skill) {
+        case "read":
+          document.getElementById("skillE1").checked = true
+          break;
+          case "write":
+            document.getElementById("skillE2").checked = true
+            break;
+            case "speak":
+              document.getElementById("skillE3").checked = true
+              break;
+        default:
+          break;
+      }
     }
+    else if(element.language=="Gujrati"){
+      document.getElementById("language3").checked=true
+      switch (element.skill) {
+        case "read":
+          document.getElementById("skillG1").checked = true
+          break;
+          case "write":
+            document.getElementById("skillG2").checked = true
+            break;
+            case "speak":
+              document.getElementById("skillG3").checked = true
+              break;
+        default:
+          break;
+      }
+    }
+ });
+
+
+
+Object.keys(result["tech"]).forEach((i)=>{
+
+const key6=result["tech"][i];
+if(result["tech"][i].technology_name=="PHP"){
+  document.getElementById("technologi1").checked=true;
+  if(result["tech"][i].technology_skill=="Beginer"){
+    document.getElementById("Beginer1").checked=true;
+  }else if(result["tech"][i].technology_skill=="Mideator"){
+    document.getElementById("Mideator1").checked=true;
+  }else if(result["tech"][i].technology_skill=="Expert"){
+    document.getElementById("Expert1").checked=true;
+  }
+}
+if(result["tech"][i].technology_name=="Mysql"){
+  document.getElementById("technologi2").checked=true;
+  if(result["tech"][i].technology_skill=="Beginer"){
+    document.getElementById("Beginer2").checked=true;
+  }else if(result["tech"][i].technology_skill=="Mideator"){
+    document.getElementById("Mideator2").checked=true;
+  }else if(result["tech"][i].technology_skill=="Expert"){
+    document.getElementById("Expert2").checked=true;
+  }
+}
+if(result["tech"][i].technology_name=="Larave"){
+  document.getElementById("technologi3").checked=true;
+  if(result["tech"][i].technology_skill=="Beginer"){
+    document.getElementById("Beginer3").checked=true;
+  }else if(result["tech"][i].technology_skill=="Mideator"){
+    document.getElementById("Mideator3").checked=true;
+  }else if(result["tech"][i].technology_skill=="Expert"){
+    document.getElementById("Expert3").checked=true;
+  }
+}
+if(result["tech"][i].technology_name=="Oracle"){
+  document.getElementById("technologi4").checked=true;
+  if(result["tech"][i].technology_skill=="Beginer"){
+    document.getElementById("Beginer4").checked=true;
+  }else if(result["tech"][i].technology_skill=="Mideator"){
+    document.getElementById("Mideator4").checked=true;
+  }else if(result["tech"][i].technology_skill=="Expert"){
+    document.getElementById("Expert4").checked=true;
+  }
+}
+
+})
+
+
+
+
+
+
+
+
+
+
+  
+  // key6.forEach((i) => {
+  //   const datakey6=Object.keys(result["lang"][i]);
+  //   console.log(datakey6,"data");
+
+  //   datakey6.forEach(element => {
+  //     console.log(element,"log");
       
-    });
-
-    if (result["lang"][i].language1 == "hindi") {
-
-      document.getElementById(result["lang"][i].language1).checked = true;
-
-    }
-    if (result["lang"][i].language1 == "English") {
-
-      document.getElementById(result["lang"][i].language1).checked = true;
-    }
-    if (result["lang"][i].language1 == "Gujrati") {
-
-      document.getElementById(result["lang"][i].language1).checked = true;
-    }
-
-    // datakey6.forEach(element => {
-    //   console.log(element,"element");
-    //   if(element=="hindi"){
-    //     document.getElementById(element).checked=true;
-    //     // console.log(result["lang"][i][element],"ans");
-
-    //   }
-    //   if(element=="English"){
-    //     console.log(result["lang"][i][element],"ans");
-    //     document.getElementById(element).checked=true;
-    //   }
-
-    // });
-  });
-
+      
+  //     console.log(document.getElementById("language"+p),"final");
+  //     // console.log(document.getElementById("skill",arr[k]+i),"valllll");
+  //     // document.getElementById("language"+p).checked=true;
+  //     // document.getElementById("skill",arr[k]+i).checked=true;
+  //   });
+  //   p++;
+  //   k++;
+  // });
+  
 
 }
 
