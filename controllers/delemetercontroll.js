@@ -46,7 +46,11 @@ try {
  
   
  const rows=await searchDelimeterServices(obj); 
- res.render('template1', { rows: rows, obj: obj });
+
+ if(rows.deliSql=="select * from studentMaster3 wh"){
+  res.send("Enter valid input")
+ }
+ res.render('delimeter/template1', { rows: rows.rows, obj: obj });
 } catch (error) {
   console.error("error", error);
   res.status(500).json({message:"can`t fetch user controller"});

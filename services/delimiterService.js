@@ -14,11 +14,9 @@ try {
 const searchDelimeterServices=async(obj)=>{
   try {
     function sqlQuery() {
-      var sql = `select * from studentMaster where`
+      var sql = `select * from studentMaster3 where`
       var list = Object.keys(obj);
-  
-      for (let i = 0; i < obj.length; i++) {
-      
+      for (let i = 0; i < list.length; i++) { 
         if (obj[list[i]].length > 0) {
           switch (list[i]) {
             case "_":
@@ -37,15 +35,19 @@ const searchDelimeterServices=async(obj)=>{
               sql = sql + city(obj["}"]) + "and"
               break;
             case ":":
-              sql = sql + Country(obj[":"])
+              sql = sql + Country(obj[":"])+ "and"
             default:
               break;
           }
         }
       }
-      console.log(sql);
+      
       return sql;
     }
+    const sqlQ=sqlQuery();
+    const deliSql=sqlQ.slice(0,-3);
+    
+   
     function firstname(obj) {
       var query = `(firstname like `;
       for (let i = 0; i < obj.length; i++) {
@@ -147,8 +149,8 @@ const searchDelimeterServices=async(obj)=>{
         return query;
       }
     }
-  const [result1]=await data.execute(sqlQuery());
-
+  const [result1]=await data.execute(deliSql);
+    return {rows:result1,deliSql};
   } catch (error) {
     console.log(`Error`, error)
   throw error;
