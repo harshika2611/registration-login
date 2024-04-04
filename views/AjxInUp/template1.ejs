@@ -146,7 +146,7 @@
                     <td><label for="board">Name of Board</label><span id="error_msg">
                             <p id="error_ssc"></p>
                         </span></td>
-                    <td><input type="text" name="board" id="board"></td>
+                    <td><input type="text" name="board" id="board" maxlength="15"></td>
                     <td style="padding: 10px 20px;"><label for="ssc_py">Passing Year</label><span id="error_msg">
                             <p id="error_sp"></p>
                         </span></td>
@@ -155,7 +155,7 @@
                     <td style="padding: 10px 20px;"><label for="sscper">Percentage</label><span id="error_msg">
                             <p id="error_sper"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="sscper"></td>
+                    <td style="padding: 10px 20px;"><input type="number" name="Percentage" id="sscper"></td>
                 </tr>
 
                 <tr>
@@ -169,18 +169,15 @@
                         </span></td>
                     </td>
 
-                    <td><input type="text" name="board" id="board_hsc" <% if(locals.edudata) {%> value="<%=
-                            edudata[1]?.cource_name %>" <% } %>></td>
+                    <td><input type="text" name="board" id="board_hsc" maxlength="15"></td>
                     <td style="padding: 10px 20px;"><label for="hsc_y">Passing Year</label><span id="error_msg">
                             <p id="error_hp"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"> <input placeholder="YYYY" type="text" name="year" id="hsc_y" <%
-                            if(locals.edudata) {%> value="<%= edudata[1]?.passing_year %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"> <input placeholder="YYYY" type="text" name="year" id="hsc_y"  minlength="4" maxlength="4"></td>
                     <td style="padding: 10px 20px;"><label for="hscper">Percentage</label><span id="error_msg">
                             <p id="error_hper"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="hscper" <%
-                            if(locals.edudata) {%> value="<%= edudata[1]?.percentage %>" <% } %> ></td>
+                    <td style="padding: 10px 20px;"><input type="number" name="Percentage" id="hscper" minlength="2" maxlength="2"></td>
                 </tr>
                 <tr>
 
@@ -190,18 +187,15 @@
                     <td><label for="degree">Cource Name</label><span id="error_msg">
                             <p id="error_cn"></p>
                         </span></td>
-                    <td><input type="text" name="board" id="degree" <% if(locals.edudata) {%> value="<%=
-                            edudata[2]?.cource_name %>" <% } %>></td>
+                    <td><input type="text" name="board" id="degree" maxlength="15"></td>
                     <td style="padding: 10px 20px;"><label for="py">Passing Year</label><span id="error_msg">
                             <p id="error_py"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="py" <%
-                            if(locals.edudata) {%> value="<%= edudata[2]?.passing_year %>" <% } %>></td>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="py" minlength="4" maxlength="4"></td>
                     <td style="padding: 10px 20px;"><label for="beper">Percentage</label><span id="error_msg">
                             <p id="error_beper"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="beper" <%
-                            if(locals.edudata) {%> value="<%= edudata[2]?.percentage %>" <% } %> ></td>
+                    <td style="padding: 10px 20px;"><input type="text" name="Percentage" id="beper" minlength="2" maxlength="2"></td>
                 </tr>
                 <tr>
                     <td>Master degree</td>
@@ -210,33 +204,28 @@
                     <td><label for="md">Cource Name</label><span id="error_msg">
                             <p id="error_md"></p>
                         </span></td>
-                    <td><input type="text" name="board" id="md" <% if(locals.edudata) {%> value="<%=
-                            edudata[3]?.cource_name %>" <% } %>></td>
+                    <td><input type="text" name="board" id="md" maxlength="15"></td>
                     <td style="padding: 10px 20px;"><label for="master_py">Passing Year</label><span id="error_msg">
                             <p id="error_mp"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="master_py" <%
-                            if(locals.edudata) {%> value="<%= edudata[3]?.passing_year %>" <% } %>>
+                    <td style="padding: 10px 20px;"><input placeholder="YYYY" type="text" name="year" id="master_py" minlength="4" maxlength="4">
                     </td>
                     <td style="padding: 10px 20px;"> <label for="masterper">Percentage</label><span id="error_msg">
                             <p id="error_masterper"></p>
                         </span></td>
-                    <td style="padding: 10px 20px;"><input type="number" name="Percentage" id="masterper" <%
-                            if(locals.edudata) {%> value="<%= edudata[3]?.percentage %>" <% } %> ></td>
+                    <td style="padding: 10px 20px;"><input type="number" name="Percentage" id="masterper" minlength="2" maxlength="2"></td>
                 </tr>
             </table>
 
         </fieldset>
         <fieldset style="width: 90%;" class="form1">
             <legend>Work Experiance</legend>
-            <button id="addrow">+</button>
-            <button id="dltrow">-</button>
             <table id="myTable">
                 <tr>
                     <td> <label for="name1">Company name</label><span id="error_msg">
                             <p id="error_name1"></p>
                         </span></td>
-                    <td><input type="text" name="name" id="name1"></td>
+                    <td><input type="text" name="name" id="name1" maxlength="10" minlength="3"></td>
                     <td style="padding: 10px 20px;"> <label for="design1">Designation</label><span id="error_msg">
                             <p id="error_design1"></p>
                         </span></td>
@@ -254,7 +243,7 @@
                     <td> <label for="name2">Company name</label><span id="error_msg">
                             <p id="error_name2"></p>
                         </span></td>
-                    <td><input type="text" name="name" id="name2"></td>
+                    <td><input type="text" name="name" id="name2" maxlength="10" minlength="3"></td>
                     <td style="padding: 10px 20px;"> <label for="design2">Designation</label><span id="error_msg">
                             <p id="error_design2"></p>
                         </span></td>
@@ -272,7 +261,7 @@
                     <td> <label for="name3">Company name</label><span id="error_msg">
                             <p id="error_name3"></p>
                         </span></td>
-                    <td><input type="text" name="name" id="name3"></td>
+                    <td><input type="text" name="name" id="name3" maxlength="10" minlength="3"></td>
                     <td style="padding: 10px 20px;"> <label for="design3">Designation</label><span id="error_msg">
                             <p id="error_design3"></p>
                         </span></td>
@@ -297,13 +286,13 @@
                         <label for="language1">Hindi</label>
                     </td>
                     <td style="padding: 10px 20px;"><input type="checkbox" value="read" name="skill1" id="skillH1">
-                        <label for="read1">Read</label>
+                        <label for="skillH1">Read</label>
                     </td>
                     <td style="padding: 10px 20px;"><input type="checkbox" value="write" name="skill1" id="skillH2">
-                        <label for="write1">Write</label>
+                        <label for="skillH2">Write</label>
                     </td>
                     <td style="padding: 10px 20px;"> <input type="checkbox" value="speak" name="skill1" id="skillH3">
-                        <label for="speak1">Speak</label>
+                        <label for="skillH3">Speak</label>
                         <div><span id="error_msg">
                                 <p id="error_hindi"></p>
                             </span></div>
@@ -317,13 +306,13 @@
                         <label for="language2">English</label>
                     </td>
                     <td style="padding: 10px 20px;"><input type="checkbox" value="read" name="skill2" id="skillE1">
-                        <label for="read2">Read</label>
+                        <label for="skillE1">Read</label>
                     </td>
                     <td style="padding: 10px 20px;"><input type="checkbox" value="write" name="skill2" id="skillE2">
-                        <label for="write2">Write</label>
+                        <label for="skillE2">Write</label>
                     </td>
                     <td style="padding: 10px 20px;"> <input type="checkbox" value="speak" name="skill2" id="skillE3">
-                        <label for="speak2">Speak</label>
+                        <label for="skillE3">Speak</label>
                         <div><span id="error_msg">
                                 <p id="error_english"></p>
                             </span></div>
@@ -335,13 +324,13 @@
                         <label for="language3">Gujrati</label>
                     </td>
                     <td style="padding: 10px 20px;"><input type="checkbox" value="read" name="skill3" id="skillG1">
-                        <label for="read3">Read</label>
+                        <label for="skillG1">Read</label>
                     </td>
                     <td style="padding: 10px 20px;"><input type="checkbox" value="write" name="skill3" id="skillG2">
-                        <label for="write3">Write</label>
+                        <label for="skillG2">Write</label>
                     </td>
                     <td style="padding: 10px 20px;"> <input type="checkbox" value="speak" name="skill3" id="skillG3">
-                        <label for="speak3">Speak</label>
+                        <label for="skillG3">Speak</label>
                         <div><span id="error_msg">
                                 <p id="error_gujrati"></p>
                             </span></div>

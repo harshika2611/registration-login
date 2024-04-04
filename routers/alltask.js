@@ -23,6 +23,9 @@ router.get("/selectionSort",(req,res)=>{
   res.render("tasks/selectionSort");
 })
 
+
+
+
 router.get("/jsEvent",(req,res)=>{
   res.render("tasks/form5");
 })
@@ -71,6 +74,10 @@ router.post('/dynamicGrid',searchQuery)
 
 router.get('/dynamicGrid/data',dynamicPagination)
 
+
+router.get("/thank",(req,res)=>{
+  res.send("data successfully updated")
+})  
 
 
 

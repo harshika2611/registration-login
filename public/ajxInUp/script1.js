@@ -105,6 +105,13 @@ function basicDetailValidation() {
   } else {
     document.getElementById('error_gender').style.display = "none"
   }
+  if (email == "" || !email.match(regEmail)) {
+    document.getElementById('error_email').innerHTML = errorMsg;
+    document.getElementById('error_email').style.color = 'red';
+    flag = false;
+  } else {
+    document.getElementById('error_email').style.display = "none"
+  }
   if (list.value == "") {
     errorMsg = "Choose valid value";
     document.getElementById('error_status').innerHTML = errorMsg;
@@ -113,13 +120,7 @@ function basicDetailValidation() {
   } else {
     document.getElementById('error_status').style.display = "none"
   }
-  if (email == "" || !email.match(regEmail)) {
-    document.getElementById('error_email').innerHTML = errorMsg;
-    document.getElementById('error_email').style.color = 'red';
-    flag = false;
-  } else {
-    document.getElementById('error_email').style.display = "none"
-  }
+
   return flag;
 }
 
@@ -722,7 +723,7 @@ function langValidation() {
 
 
   if (language2.checked) {
-    console.log(skill2);
+
     let arr = [];
     skill2.forEach(element => {
       if (element.checked && language2.checked) {

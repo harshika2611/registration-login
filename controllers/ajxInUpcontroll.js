@@ -4,7 +4,7 @@ const insertData=async(req,res)=>{
   try {
   
    const ans=await insertDataServices(req.body);
-   
+
    res.send("inserted")
   } catch (error) {
     console.error("error", error);

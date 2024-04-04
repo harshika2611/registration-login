@@ -5,11 +5,11 @@ let count = 0;
 function nextFun() {
 
   switch (count) {
-    case 0:
-      if (!basicDetailValidation()) {
-        return;
-      }
-      break;
+    // case 0:
+    //   if (!basicDetailValidation()) {
+    //     return;
+    //   }
+    //   break;
     case 1:
       if (!eduValidation()) {
         return;
@@ -78,9 +78,6 @@ function updatesteps() {
 }
 
 async function updatebtn() {
-  if (!validation()) {
-    return false;
-  }
   const id = window.location.pathname.split("/")[5];
 
   const form = document.getElementById("form");
@@ -99,7 +96,7 @@ async function updatebtn() {
   }
   const updateData = JSON.stringify(serialData);
 
-  const response = await fetch(`${process.env.URL}/api/tasks/fetchInsertUpdate/update/${id}`, {
+  const response = await fetch(`http://localhost:8050/api/tasks/fetchInsertUpdate/update/${id}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -107,13 +104,49 @@ async function updatebtn() {
     },
     body: updateData,
   });
-
-
+  window.location.replace(`http://localhost:8050/api/tasks/thank`);
 }
 
+
 async function submitbtn() {
-  if (!validation()) {
-    return false;
+  switch (count) {
+    // case 0:
+    //   if (!basicDetailValidation()) {
+    //     return;
+    //   }
+    //   break;
+    case 1:
+      if (!eduValidation()) {
+        return;
+      }
+      break;
+    case 2:
+      if (!workValidation()) {
+        return;
+      }
+      break;
+    case 3:
+      if (!langValidation()) {
+        return;
+      }
+      break;
+    case 4:
+      if (!techValidation()) {
+        return;
+      }
+      break;
+    case 5:
+      if (!refValidation()) {
+        return;
+      }
+      break;
+    case 6:
+      if (!prefValidation()) {
+        return;
+      }
+      break;
+    default:
+      break;
   }
   const form = document.getElementById("form");
   const formData = new FormData(form);
