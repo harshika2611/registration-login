@@ -35,7 +35,6 @@ try {
   from examMaster1  inner join studentMaster1 on studentMaster1.studentId=examMaster1.studentId where studentMaster1.studentId=${sid}
   group by studentMaster1.studentId ;`
   const [result1]=await data.execute(sql1);
-  
   return result1;
 } catch (error) {
   console.log(`Error`, error)
@@ -103,6 +102,4 @@ try {
   throw error;
 }
 }
-
-
 module.exports={examSevices,searchDataServices,searchFieldServices,searchPaginationServices,detailStudentServices};

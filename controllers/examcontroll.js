@@ -30,7 +30,8 @@ const searchData=async(req,res)=>{
   const sid=req.body.sid;
 
     const rows= await searchDataServices(sid);
-
+    console.log(rows);
+    
 res.render('examReport/template1',{rows:rows,id:id})
   } catch (error) {
      console.error("error", error);

@@ -25,8 +25,8 @@ table {
     </tr>
  
     <tr>
-      <td><%=rows[0].studentId%></td>
-      <td><%=rows[0].firstName%></td>
+      <td><%=rows[0]?.studentId%></td>
+      <td><%=rows[0]?.firstName%></td>
     </tr>
 
   </table>
@@ -78,7 +78,7 @@ table {
         <%for(let i=0; i<rows.length; i++){%>
         <% if(rows[i].examType=='TERMINAL'){%>
           <tr>
-          <td><%=rows[i].subjectId%></td>
+          <td><%=rows[i]?.subjectId%></td>
           <td><%=rows[i].subjectName%></td>
           <td><%=rows[i].P_Marks%></td>
           <td><%=rows[i].T_Marks%></td>
